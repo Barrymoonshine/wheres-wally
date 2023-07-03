@@ -1,0 +1,9 @@
+.game-container {
+  min-height: 100%;
+  border: 1px dotted grey;
+}
+
+.game-image {
+  min-height: 100%;
+  width: 100%;
+}

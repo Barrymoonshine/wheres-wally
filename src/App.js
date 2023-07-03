@@ -1,11 +1,12 @@
 import './App.css';
-import Header from './components/header/Header';
+import Header from './components/Header/Header';
+import GameArea from './components/GameArea/GameArea';
 
 function App() {
   return (
     <div>
       <Header />
-      Hello world!
+      <GameArea />
     </div>
   );
 }
