@@ -1,5 +1,5 @@
 const CharSelectionMenu = (props) => {
-  const { mousePosition } = props;
+  const { mousePosition, checkIfCharFound } = props;
   return (
     <div
       className='char-selection-menu'
@@ -13,13 +13,31 @@ const CharSelectionMenu = (props) => {
     >
       <ul>
         <li>
-          <button>Wally</button>
+          <button
+            onMouseDown={() => {
+              checkIfCharFound('wally');
+            }}
+          >
+            Wally
+          </button>
         </li>
         <li>
-          <button>Odlaw</button>
+          <button
+            onMouseDown={() => {
+              checkIfCharFound('odlaw');
+            }}
+          >
+            Odlaw
+          </button>
         </li>
         <li>
-          <button>Wizard</button>
+          <button
+            onMouseDown={() => {
+              checkIfCharFound('wizard');
+            }}
+          >
+            Wizard
+          </button>
         </li>
       </ul>
     </div>
