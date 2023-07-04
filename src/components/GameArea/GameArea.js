@@ -4,6 +4,9 @@ import { useState } from 'react';
 
 const GameArea = () => {
   const [mousePosition, setmousePosition] = useState({});
+  const [charLocations, setCharLocations] = useState([
+    { wally: [804, 282], odlaw: [374, 604], wizard: [1272, 118] },
+  ]);
 
   const captureMousePosition = (e) => {
     console.log(
