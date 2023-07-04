@@ -1,12 +1,14 @@
 import './GameArea.css';
 import gameImage from '../../images/Wheres-Wally-Pic8.jpg';
 import { useState } from 'react';
+import CharSelectionMenu from '../CharSelectionMenu/CharSelectionMenu';
 
 const GameArea = () => {
   const [mousePosition, setmousePosition] = useState({});
   const [charLocations, setCharLocations] = useState([
     { wally: [804, 282], odlaw: [374, 604], wizard: [1272, 118] },
   ]);
+  const [isCharSelectionVisible, setCharSelectionVisible] = useState(false);
 
   const captureMousePosition = (e) => {
     console.log(
@@ -24,13 +26,22 @@ const GameArea = () => {
     );
   };
 
+  const toggleCharMenuVisibility = () => {
+    const newVisibility = isCharSelectionVisible ? false : true;
+    setCharSelectionVisible(newVisibility);
+  };
+
   return (
     <div
       className='game-container'
       onMouseDown={captureMousePosition}
       onMouseMove={trackMousePosition}
+      onClick={toggleCharMenuVisibility}
     >
       <img src={gameImage} className='game-image' alt='Where is Wally' />
+      {isCharSelectionVisible && (
+        <CharSelectionMenu mousePosition={mousePosition} />
+      )}
     </div>
   );
 };
