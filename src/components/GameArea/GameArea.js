@@ -18,6 +18,7 @@ const GameArea = () => {
       horizontalPosition: e.clientX,
       verticalPosition: e.clientY,
     });
+    toggleCharMenuVisibility();
   };
 
   const trackMousePosition = (e) => {
@@ -36,7 +37,6 @@ const GameArea = () => {
       className='game-container'
       onMouseDown={captureMousePosition}
       onMouseMove={trackMousePosition}
-      onClick={toggleCharMenuVisibility}
     >
       <img src={gameImage} className='game-image' alt='Where is Wally' />
       {isCharSelectionVisible && (
