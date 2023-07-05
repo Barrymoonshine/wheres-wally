@@ -34,7 +34,7 @@ const GameArea = () => {
     );
   };
 
-  const checkIfCordsInTolerance = (selectedChar) => {
+  const areCordsAllowed = (selectedChar) => {
     // Investigate refactoring for loop
     const permittedCords = [];
     for (let i = -15; i < 16; i += 1) {
@@ -47,19 +47,17 @@ const GameArea = () => {
       }
     }
 
-    const areCordsPermittedSome = permittedCords.some(
+    const areCordsPermitted = permittedCords.some(
       (setOfCords) =>
         setOfCords[0] === mousePosition.horizontalPosition &&
         setOfCords[1] === mousePosition.verticalPosition
     );
 
-    console.log('areCordsPermittedSome', areCordsPermittedSome);
-
-    return areCordsPermittedSome;
+    return areCordsPermitted;
   };
 
   const checkIfCharFound = (selectedChar) => {
-    checkIfCordsInTolerance(selectedChar)
+    areCordsAllowed(selectedChar)
       ? alert('selectedChar found!')
       : alert('Character not found, try again!');
   };

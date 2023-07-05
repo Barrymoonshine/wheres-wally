@@ -3,7 +3,7 @@
   justify-content: space-between;
   padding: 20px;
   border-bottom: 1px solid black;
-  width: 100%;
+  max-width: 1915px;
 }
 
 ul {
