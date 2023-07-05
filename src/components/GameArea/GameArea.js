@@ -8,7 +8,7 @@ const GameArea = () => {
   const [charLocations, setCharLocations] = useState({
     wally: [804, 282],
     odlaw: [374, 604],
-    wizard: [1272, 118],
+    wizard: [1322, 120],
   });
   const [isCharSelectionVisible, setCharSelectionVisible] = useState(false);
 
@@ -57,6 +57,8 @@ const GameArea = () => {
   };
 
   const checkIfCharFound = (selectedChar) => {
+    console.log('checkIfCharFound called');
+    console.log('selectedChar', selectedChar);
     areCordsAllowed(selectedChar)
       ? alert('selectedChar found!')
       : alert('Character not found, try again!');
