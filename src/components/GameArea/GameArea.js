@@ -35,11 +35,11 @@ const GameArea = () => {
   };
 
   const checkIfCordsInTolerance = (selectedChar) => {
-    // wally [804, 282]
+    // Investigate refactoring for loop
     const permittedCords = [];
-    for (let i = -5; i < 6; i += 1) {
-      // Create an array of array that contains all permitted co-ordinates within a -5: +5 range
-      for (let y = -5; y < 6; y += 1) {
+    for (let i = -15; i < 16; i += 1) {
+      // Create an array of arrays that contains all permitted co-ordinates within a -5: +5 range
+      for (let y = -15; y < 16; y += 1) {
         const newArray = [];
         newArray.push(charLocations[selectedChar][0] + i);
         newArray.push(charLocations[selectedChar][1] + y);
@@ -47,17 +47,19 @@ const GameArea = () => {
       }
     }
 
-    console.log(permittedCords);
+    const areCordsPermittedSome = permittedCords.some(
+      (setOfCords) =>
+        setOfCords[0] === mousePosition.horizontalPosition &&
+        setOfCords[1] === mousePosition.verticalPosition
+    );
+
+    console.log('areCordsPermittedSome', areCordsPermittedSome);
+
+    return areCordsPermittedSome;
   };
 
   const checkIfCharFound = (selectedChar) => {
-    const currentLocation = [
-      mousePosition.horizontalPosition,
-      mousePosition.verticalPosition,
-    ];
-    checkIfCordsInTolerance(selectedChar);
-    charLocations[selectedChar][0] === currentLocation[0] &&
-    charLocations[selectedChar][1] === currentLocation[1]
+    checkIfCordsInTolerance(selectedChar)
       ? alert('selectedChar found!')
       : alert('Character not found, try again!');
   };
