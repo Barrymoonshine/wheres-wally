@@ -14,6 +14,11 @@ const GameArea = () => {
   });
   const [isCharSelectionVisible, setCharSelectionVisible] = useState(false);
   const [isTargetVisible, setTargetVisibility] = useState(false);
+  const [foundChars, setFoundChars] = useState({
+    wally: false,
+    odlaw: false,
+    wilma: false,
+  });
 
   const captureMousePosition = (e) => {
     console.log(
@@ -66,11 +71,13 @@ const GameArea = () => {
   };
 
   const checkIfCharFound = (selectedChar) => {
-    console.log('checkIfCharFound called');
-    console.log('selectedChar', selectedChar);
-    areCordsAllowed(selectedChar)
-      ? alert('selectedChar found!')
-      : alert('Character not found, try again!');
+    if (areCordsAllowed(selectedChar)) {
+      alert(`Congrats you found ${selectedChar}!`);
+      console.log();
+      setFoundChars((prevState) => ({ ...prevState, [selectedChar]: true }));
+    } else {
+      alert('Character not found, try again!');
+    }
   };
 
   return (
@@ -84,6 +91,7 @@ const GameArea = () => {
         <CharSelectionMenu
           charMenuPosition={charMenuPosition}
           checkIfCharFound={checkIfCharFound}
+          foundChars={foundChars}
         />
       )}
       {isTargetVisible && <Target charMenuPosition={charMenuPosition} />}

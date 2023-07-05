@@ -1,8 +1,9 @@
 const CharSelectionMenu = (props) => {
-  const { charMenuPosition, checkIfCharFound } = props;
+  const { charMenuPosition, checkIfCharFound, foundChars } = props;
 
   const leftMenuPos = charMenuPosition.horizontalPosition + 20;
   const topMenuPos = charMenuPosition.verticalPosition + 20;
+
   return (
     <div
       className='char-selection-menu'
@@ -16,31 +17,46 @@ const CharSelectionMenu = (props) => {
     >
       <ul>
         <li>
-          <button
-            onMouseDown={() => {
-              checkIfCharFound('wally');
-            }}
-          >
-            Wally
-          </button>
+          {`Wally found: ${foundChars.wally}`}
+          {foundChars.wally ? (
+            'Wally has been found'
+          ) : (
+            <button
+              onMouseDown={() => {
+                checkIfCharFound('wally');
+              }}
+            >
+              Wally
+            </button>
+          )}
         </li>
         <li>
-          <button
-            onMouseDown={() => {
-              checkIfCharFound('odlaw');
-            }}
-          >
-            Odlaw
-          </button>
+          {`Odlaw found: ${foundChars.odlaw}`}
+          {foundChars.odlaw ? (
+            'Odlaw has been found'
+          ) : (
+            <button
+              onMouseDown={() => {
+                checkIfCharFound('odlaw');
+              }}
+            >
+              Odlaw
+            </button>
+          )}
         </li>
         <li>
-          <button
-            onMouseDown={() => {
-              checkIfCharFound('wilma');
-            }}
-          >
-            Wilma
-          </button>
+          {`Wilma found: ${foundChars.wilma}`}
+          {foundChars.wilma ? (
+            'Wilma has been found'
+          ) : (
+            <button
+              onMouseDown={() => {
+                checkIfCharFound('wilma');
+              }}
+            >
+              Wilma
+            </button>
+          )}
         </li>
       </ul>
     </div>
