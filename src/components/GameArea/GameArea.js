@@ -2,6 +2,7 @@ import './GameArea.css';
 import gameImage from '../../images/Wheres-Wally-Pic8.jpg';
 import { useState } from 'react';
 import CharSelectionMenu from '../CharSelectionMenu/CharSelectionMenu';
+import Target from '../Target/Target';
 
 const GameArea = () => {
   const [mousePosition, setMousePosition] = useState({});
@@ -12,6 +13,7 @@ const GameArea = () => {
     wilma: [1698, 356],
   });
   const [isCharSelectionVisible, setCharSelectionVisible] = useState(false);
+  const [isTargetVisible, setTargetVisibility] = useState(false);
 
   const captureMousePosition = (e) => {
     console.log(
@@ -32,6 +34,7 @@ const GameArea = () => {
   const toggleCharMenuVisibility = () => {
     const newVisibility = isCharSelectionVisible ? false : true;
     setCharSelectionVisible(newVisibility);
+    setTargetVisibility(newVisibility);
   };
 
   const trackMousePosition = (e) => {
@@ -83,6 +86,7 @@ const GameArea = () => {
           checkIfCharFound={checkIfCharFound}
         />
       )}
+      {isTargetVisible && <Target charMenuPosition={charMenuPosition} />}
     </div>
   );
 };
