@@ -34,19 +34,28 @@ const GameArea = () => {
     );
   };
 
+  const checkIfCordsInTolerance = (selectedChar) => {
+    // wally [804, 282]
+    const permittedCords = [];
+    for (let i = -5; i < 6; i += 1) {
+      // Create an array of array that contains all permitted co-ordinates within a -5: +5 range
+      for (let y = -5; y < 6; y += 1) {
+        const newArray = [];
+        newArray.push(charLocations[selectedChar][0] + i);
+        newArray.push(charLocations[selectedChar][1] + y);
+        permittedCords.push(newArray);
+      }
+    }
+
+    console.log(permittedCords);
+  };
+
   const checkIfCharFound = (selectedChar) => {
     const currentLocation = [
       mousePosition.horizontalPosition,
       mousePosition.verticalPosition,
     ];
-    console.log(' charLocations[selectedChar]', charLocations[selectedChar]);
-    console.log('currentLocation', currentLocation);
-    console.log(
-      ' charLocations[selectedChar][0] === currentLocation[0] && charLocations[selectedChar][1] === currentLocation[1]',
-      charLocations[selectedChar][0] === currentLocation[0] &&
-        charLocations[selectedChar][1] === currentLocation[1]
-    );
-
+    checkIfCordsInTolerance(selectedChar);
     charLocations[selectedChar][0] === currentLocation[0] &&
     charLocations[selectedChar][1] === currentLocation[1]
       ? alert('selectedChar found!')
