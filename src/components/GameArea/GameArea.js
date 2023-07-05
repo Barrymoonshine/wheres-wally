@@ -6,9 +6,9 @@ import CharSelectionMenu from '../CharSelectionMenu/CharSelectionMenu';
 const GameArea = () => {
   const [mousePosition, setMousePosition] = useState({});
   const [charLocations, setCharLocations] = useState({
-    wally: [804, 282],
-    odlaw: [374, 604],
-    wizard: [1322, 120],
+    wally: [1276, 174],
+    odlaw: [94, 652],
+    wilma: [1432, 410],
   });
   const [isCharSelectionVisible, setCharSelectionVisible] = useState(false);
 

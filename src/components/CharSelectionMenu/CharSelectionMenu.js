@@ -33,10 +33,10 @@ const CharSelectionMenu = (props) => {
         <li>
           <button
             onMouseDown={() => {
-              checkIfCharFound('wizard');
+              checkIfCharFound('wilma');
             }}
           >
-            Wizard
+            Wilma
           </button>
         </li>
       </ul>
