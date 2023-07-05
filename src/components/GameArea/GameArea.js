@@ -5,20 +5,26 @@ import CharSelectionMenu from '../CharSelectionMenu/CharSelectionMenu';
 
 const GameArea = () => {
   const [mousePosition, setMousePosition] = useState({});
+  const [charMenuPosition, setCharMenuPosition] = useState({});
   const [charLocations, setCharLocations] = useState({
-    wally: [1276, 174],
-    odlaw: [94, 652],
-    wilma: [1432, 410],
+    wally: [1544, 118],
+    odlaw: [96, 906],
+    wilma: [1698, 356],
   });
   const [isCharSelectionVisible, setCharSelectionVisible] = useState(false);
 
   const captureMousePosition = (e) => {
     console.log(
-      `captureMousePosition x Horizontal: ${e.clientX} y Vertical: ${e.clientY}`
+      `captureMousePosition page x Horizontal: ${e.pageX} y Vertical: ${e.pageY}`
     );
-    setMousePosition({
+
+    setCharMenuPosition({
       horizontalPosition: e.clientX,
       verticalPosition: e.clientY,
+    });
+    setMousePosition({
+      horizontalPosition: e.pageX,
+      verticalPosition: e.pageY,
     });
     toggleCharMenuVisibility();
   };
@@ -30,7 +36,7 @@ const GameArea = () => {
 
   const trackMousePosition = (e) => {
     console.log(
-      `trackMousePosition x Horizontal: ${e.clientX} y Vertical: ${e.clientY}`
+      `trackMousePosition x pages Horizontal: ${e.pageX} y Vertical: ${e.pageY}`
     );
   };
 
@@ -73,7 +79,7 @@ const GameArea = () => {
       <img src={gameImage} className='game-image' alt='Where is Wally' />
       {isCharSelectionVisible && (
         <CharSelectionMenu
-          mousePosition={mousePosition}
+          charMenuPosition={charMenuPosition}
           checkIfCharFound={checkIfCharFound}
         />
       )}

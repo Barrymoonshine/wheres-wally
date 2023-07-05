@@ -1,11 +1,11 @@
 const CharSelectionMenu = (props) => {
-  const { mousePosition, checkIfCharFound } = props;
+  const { charMenuPosition, checkIfCharFound } = props;
   return (
     <div
       className='char-selection-menu'
       style={{
-        top: `${mousePosition.verticalPosition}px`,
-        left: `${mousePosition.horizontalPosition}px`,
+        left: `${charMenuPosition.horizontalPosition}px`,
+        top: `${charMenuPosition.verticalPosition}px`,
         position: 'fixed',
         border: '1px solid black',
         backgroundColor: 'white',

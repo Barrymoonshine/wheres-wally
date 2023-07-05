@@ -1,9 +1,14 @@
 .header-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px;
   border-bottom: 1px solid black;
-  max-width: 1915px;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 ul {
@@ -13,5 +18,10 @@ ul {
 .header-container ul {
   display: flex;
   margin: 0px;
+  padding: 20px;
   gap: 10px;
+}
+
+.characters {
+  padding-right: 20px;
 }

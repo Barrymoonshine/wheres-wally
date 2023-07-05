@@ -9,7 +9,7 @@ const Header = () => {
         <ul>
           <li>Wally</li>
           <li>Odlaw</li>
-          <li>Wizard Whitebeard</li>
+          <li>Wilma</li>
         </ul>
       </div>
     </nav>
