@@ -1,10 +1,8 @@
 .game-container {
   min-height: 100vh;
-  border: 1px dotted grey;
 }
 
 .game-image {
-  border: 1px dotted red;
   min-height: 100vh;
   max-width: 1915px;
 }

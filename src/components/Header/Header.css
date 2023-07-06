@@ -3,13 +3,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid #18181b;
   background-color: white;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1;
+  background-color: #a1e1f1;
+}
+
+.title {
+  font-size: 35px;
+  font-weight: bold;
 }
 
 ul {
