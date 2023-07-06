@@ -4,13 +4,13 @@ import odlawImg from '../../images/odlaw.png';
 import wilmaImg from '../../images/wilma.png';
 import { useGame } from '../../context/GameContext';
 
-const CharSelectionMenu = (props) => {
-  const { checkIfCharFound, foundChars } = props;
-
-  const { relativePosition } = useGame();
+const CharSelectionMenu = () => {
+  const { relativePosition, foundCharacters, checkIfCharFound } = useGame();
 
   const leftMenuPosition = relativePosition[0] + 20;
   const topMenuPosition = relativePosition[1] + 20;
+
+  console.log('foundCharacters.wally', foundCharacters.wally);
 
   return (
     <div
@@ -23,7 +23,7 @@ const CharSelectionMenu = (props) => {
     >
       <ul>
         <li>
-          {foundChars.wally ? (
+          {foundCharacters.wally ? (
             <div className='char-found-container'>
               <img className='menu-images' src={wallyImg} alt='Wally' />
               Found!
@@ -43,7 +43,7 @@ const CharSelectionMenu = (props) => {
           )}
         </li>
         <li>
-          {foundChars.odlaw ? (
+          {foundCharacters.odlaw ? (
             <div className='char-found-container'>
               <img className='menu-images' src={odlawImg} alt='Odlaw' />
               Found!
@@ -63,7 +63,7 @@ const CharSelectionMenu = (props) => {
           )}
         </li>
         <li>
-          {foundChars.wilma ? (
+          {foundCharacters.wilma ? (
             <div className='char-found-container'>
               <img className='menu-images' src={wilmaImg} alt='Odlaw' />
               Found!

@@ -11,7 +11,6 @@ export const GameProvider = ({ children }) => {
   const updateMousePositions = (e) => {
     const newAbsolutePosition = [e.pageX, e.pageY];
     const newRelativePosition = [e.clientX, e.clientY];
-    console.log('newRelativePosition', newRelativePosition);
     dispatch({
       type: ACTIONS.UPDATE_ABSOLUTE_POSITION,
       payload: { newAbsolutePosition },
@@ -22,11 +21,45 @@ export const GameProvider = ({ children }) => {
     });
   };
 
+  const isLocationAllowed = (selectedChar) => {
+    // Investigate refactoring for loop
+    const allowedLocations = [];
+    for (let i = -15; i < 16; i += 1) {
+      for (let y = -15; y < 16; y += 1) {
+        const newArray = [];
+        newArray.push(state.characterLocations[selectedChar][0] + i);
+        newArray.push(state.characterLocations[selectedChar][1] + y);
+        allowedLocations.push(newArray);
+      }
+    }
+    const locationAllowed = allowedLocations.some(
+      (setOfCords) =>
+        setOfCords[0] === state.absolutePosition[0] &&
+        setOfCords[1] === state.absolutePosition[1]
+    );
+    return locationAllowed;
+  };
+
+  const checkIfCharFound = (selectedChar) => {
+    console.log('checkIfCharFound called');
+    if (isLocationAllowed(selectedChar)) {
+      alert(`Congrats you found ${selectedChar}!`);
+      dispatch({
+        type: ACTIONS.UPDATE_FOUND_CHARACTER,
+        payload: { selectedChar },
+      });
+    } else {
+      alert('Character not found, try again!');
+    }
+  };
+
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
     characterLocations: state.characterLocations,
+    foundCharacters: state.foundCharacters,
     updateMousePositions,
+    checkIfCharFound,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

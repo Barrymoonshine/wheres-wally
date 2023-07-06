@@ -12,6 +12,11 @@ export const initialState = {
     odlaw: [96, 906],
     wilma: [1698, 356],
   },
+  foundCharacters: {
+    wally: false,
+    odlaw: false,
+    wilma: false,
+  },
 };
 
 const gameReducer = (state, action) => {
@@ -27,7 +32,14 @@ const gameReducer = (state, action) => {
         ...state,
         relativePosition: payload.newRelativePosition,
       };
-
+    case ACTIONS.UPDATE_FOUND_CHARACTER:
+      console.log('update found character called');
+      return {
+        ...state,
+        foundCharacters: {
+          [payload.selectedChar]: true,
+        },
+      };
     default:
       return state;
   }

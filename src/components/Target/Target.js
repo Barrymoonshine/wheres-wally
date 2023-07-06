@@ -2,7 +2,6 @@ import { useGame } from '../../context/GameContext';
 
 const Target = () => {
   const { relativePosition } = useGame();
-  console.log(relativePosition);
   const leftTargetPosition = relativePosition[0] - 30;
   const topTargetPosition = relativePosition[1] - 30;
   return (
