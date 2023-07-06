@@ -1,3 +1,8 @@
+import './CharSelectionMenu.css';
+import wallyImg from '../../images/wally.png';
+import odlawImg from '../../images/odlaw.png';
+import wilmaImg from '../../images/wilma.png';
+
 const CharSelectionMenu = (props) => {
   const { charMenuPosition, checkIfCharFound, foundChars } = props;
 
@@ -11,51 +16,58 @@ const CharSelectionMenu = (props) => {
         left: `${leftMenuPos}px`,
         top: `${topMenuPos}px`,
         position: 'fixed',
-        border: '1px solid black',
-        backgroundColor: 'white',
       }}
     >
       <ul>
         <li>
-          {`Wally found: ${foundChars.wally}`}
           {foundChars.wally ? (
             'Wally has been found'
           ) : (
-            <button
-              onMouseDown={() => {
-                checkIfCharFound('wally');
-              }}
-            >
+            <div className='menu-button-container'>
+              <button
+                className='menu-button'
+                onMouseDown={() => {
+                  checkIfCharFound('wally');
+                }}
+              >
+                <img className='menu-images' src={wallyImg} alt='Wally' />
+              </button>
               Wally
-            </button>
+            </div>
           )}
         </li>
         <li>
-          {`Odlaw found: ${foundChars.odlaw}`}
           {foundChars.odlaw ? (
             'Odlaw has been found'
           ) : (
-            <button
-              onMouseDown={() => {
-                checkIfCharFound('odlaw');
-              }}
-            >
+            <div className='menu-button-container'>
+              <button
+                className='menu-button'
+                onMouseDown={() => {
+                  checkIfCharFound('odlaw');
+                }}
+              >
+                <img className='menu-images' src={odlawImg} alt='Odlaw' />
+              </button>
               Odlaw
-            </button>
+            </div>
           )}
         </li>
         <li>
-          {`Wilma found: ${foundChars.wilma}`}
           {foundChars.wilma ? (
             'Wilma has been found'
           ) : (
-            <button
-              onMouseDown={() => {
-                checkIfCharFound('wilma');
-              }}
-            >
+            <div className='menu-button-container'>
+              <button
+                className='menu-button'
+                onMouseDown={() => {
+                  checkIfCharFound('wilma');
+                }}
+              >
+                <img className='menu-images' src={wilmaImg} alt='Wilma' />
+              </button>
               Wilma
-            </button>
+            </div>
           )}
         </li>
       </ul>

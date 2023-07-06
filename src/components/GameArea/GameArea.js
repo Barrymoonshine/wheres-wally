@@ -1,5 +1,5 @@
 import './GameArea.css';
-import gameImage from '../../images/Wheres-Wally-Pic8.jpg';
+import gameImage from '../../images/game-board.jpg';
 import { useState } from 'react';
 import CharSelectionMenu from '../CharSelectionMenu/CharSelectionMenu';
 import Target from '../Target/Target';
