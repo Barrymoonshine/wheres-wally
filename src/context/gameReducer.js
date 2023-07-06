@@ -6,7 +6,7 @@ export const initialState = {
   // Relative position (clientX & Y) is relative to view port sized and used
   // To position the character menu and target components
   absolutePosition: [],
-  //   relativePosition: [],
+  relativePosition: [],
 };
 
 const gameReducer = (state, action) => {
@@ -15,7 +15,12 @@ const gameReducer = (state, action) => {
     case ACTIONS.UPDATE_ABSOLUTE_POSITION:
       return {
         ...state,
-        absolutePosition: payload.newPositions,
+        absolutePosition: payload.newAbsolutePosition,
+      };
+    case ACTIONS.UPDATE_RELATIVE_POSITION:
+      return {
+        ...state,
+        relativePosition: payload.newRelativePosition,
       };
 
     default:

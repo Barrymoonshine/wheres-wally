@@ -8,18 +8,24 @@ export const useGame = () => useContext(GameContext);
 export const GameProvider = ({ children }) => {
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
-  const updateAbsolutePosition = (e) => {
-    const newPositions = [e.pageX, e.pageY];
-    console.log('newPositions', newPositions);
+  const updateMousePositions = (e) => {
+    const newAbsolutePosition = [e.pageX, e.pageY];
+    const newRelativePosition = [e.clientX, e.clientY];
+    console.log('newRelativePosition', newRelativePosition);
     dispatch({
       type: ACTIONS.UPDATE_ABSOLUTE_POSITION,
-      payload: { newPositions },
+      payload: { newAbsolutePosition },
+    });
+    dispatch({
+      type: ACTIONS.UPDATE_RELATIVE_POSITION,
+      payload: { newRelativePosition },
     });
   };
 
   const value = {
     absolutePosition: state.absolutePosition,
-    updateAbsolutePosition,
+    relativePosition: state.relativePosition,
+    updateMousePositions,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

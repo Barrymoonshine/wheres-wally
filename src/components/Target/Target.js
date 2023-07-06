@@ -1,12 +1,15 @@
-const Target = (props) => {
-  const { charMenuPosition } = props;
-  const leftTargetPos = charMenuPosition.horizontalPosition - 30;
-  const topTargetPos = charMenuPosition.verticalPosition - 30;
+import { useGame } from '../../context/GameContext';
+
+const Target = () => {
+  const { relativePosition } = useGame();
+  console.log(relativePosition);
+  const leftTargetPosition = relativePosition[0] - 30;
+  const topTargetPosition = relativePosition[1] - 30;
   return (
     <div
       style={{
-        left: `${leftTargetPos}px`,
-        top: `${topTargetPos}px`,
+        left: `${leftTargetPosition}px`,
+        top: `${topTargetPosition}px`,
         position: 'fixed',
         border: '5px dotted red',
         width: '50px',
