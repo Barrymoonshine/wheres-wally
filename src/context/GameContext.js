@@ -25,6 +25,7 @@ export const GameProvider = ({ children }) => {
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
+    characterLocations: state.characterLocations,
     updateMousePositions,
   };
 
