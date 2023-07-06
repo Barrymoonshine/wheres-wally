@@ -1,8 +1,8 @@
 import './CharSelectionMenu.css';
+import { useGame } from '../../context/GameContext';
 import wallyImg from '../../images/wally.png';
 import odlawImg from '../../images/odlaw.png';
 import wilmaImg from '../../images/wilma.png';
-import { useGame } from '../../context/GameContext';
 
 const CharSelectionMenu = () => {
   const { relativePosition, foundCharacters, checkIfCharFound } = useGame();

@@ -43,9 +43,11 @@ export const GameProvider = ({ children }) => {
   const checkIfCharFound = (selectedChar) => {
     if (isLocationAllowed(selectedChar)) {
       alert(`Congrats you found ${selectedChar}!`);
+      const updatedChar = { ...state.foundCharacters, [selectedChar]: true };
+      console.log('updatedChar', updatedChar);
       dispatch({
         type: ACTIONS.UPDATE_FOUND_CHARACTER,
-        payload: { selectedChar },
+        payload: { updatedChar },
       });
     } else {
       alert('Character not found, try again!');

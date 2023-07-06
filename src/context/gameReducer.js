@@ -34,11 +34,11 @@ const gameReducer = (state, action) => {
         relativePosition: payload.newRelativePosition,
       };
     case ACTIONS.UPDATE_FOUND_CHARACTER:
+      console.log('{...state}', { ...state });
+      console.log('payload.updatedChar', payload.updatedChar);
       return {
         ...state,
-        foundCharacters: {
-          [payload.selectedChar]: true,
-        },
+        foundCharacters: payload.updatedChar,
       };
     case ACTIONS.TOGGLE_VISIBILITY:
       return {
