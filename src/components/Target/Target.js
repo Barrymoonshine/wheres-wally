@@ -18,6 +18,7 @@ const Target = (props) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgba(238, 238, 238, 0.6)',
       }}
     >
       X

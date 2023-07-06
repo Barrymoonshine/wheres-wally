@@ -21,7 +21,10 @@ const CharSelectionMenu = (props) => {
       <ul>
         <li>
           {foundChars.wally ? (
-            'Wally has been found'
+            <div className='char-found-container'>
+              <img className='menu-images' src={wallyImg} alt='Wally' />
+              Found!
+            </div>
           ) : (
             <div className='menu-button-container'>
               <button
@@ -31,14 +34,17 @@ const CharSelectionMenu = (props) => {
                 }}
               >
                 <img className='menu-images' src={wallyImg} alt='Wally' />
+                Wally
               </button>
-              Wally
             </div>
           )}
         </li>
         <li>
           {foundChars.odlaw ? (
-            'Odlaw has been found'
+            <div className='char-found-container'>
+              <img className='menu-images' src={odlawImg} alt='Odlaw' />
+              Found!
+            </div>
           ) : (
             <div className='menu-button-container'>
               <button
@@ -48,14 +54,17 @@ const CharSelectionMenu = (props) => {
                 }}
               >
                 <img className='menu-images' src={odlawImg} alt='Odlaw' />
+                Odlaw
               </button>
-              Odlaw
             </div>
           )}
         </li>
         <li>
           {foundChars.wilma ? (
-            'Wilma has been found'
+            <div className='char-found-container'>
+              <img className='menu-images' src={wilmaImg} alt='Odlaw' />
+              Found!
+            </div>
           ) : (
             <div className='menu-button-container'>
               <button
@@ -65,8 +74,8 @@ const CharSelectionMenu = (props) => {
                 }}
               >
                 <img className='menu-images' src={wilmaImg} alt='Wilma' />
+                Wilma
               </button>
-              Wilma
             </div>
           )}
         </li>
