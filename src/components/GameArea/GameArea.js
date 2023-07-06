@@ -1,21 +1,12 @@
 import './GameArea.css';
 import gameImage from '../../images/game-board.jpg';
-import { useState } from 'react';
 import CharSelectionMenu from '../CharSelectionMenu/CharSelectionMenu';
 import Target from '../Target/Target';
 import { useGame } from '../../context/GameContext';
 
 const GameArea = () => {
-  const [isCharSelectionVisible, setCharSelectionVisible] = useState(false);
-  const [isTargetVisible, setTargetVisibility] = useState(false);
-
-  const { updateMousePositions } = useGame();
-
-  const toggleCharMenuVisibility = () => {
-    const newVisibility = isCharSelectionVisible ? false : true;
-    setCharSelectionVisible(newVisibility);
-    setTargetVisibility(newVisibility);
-  };
+  const { updateMousePositions, arePopUpsVisible, togglePopUpsVisibility } =
+    useGame();
 
   // const trackMousePosition = (e) => {
   //   console.log(
@@ -28,17 +19,13 @@ const GameArea = () => {
       className='game-container'
       onMouseDown={(e) => {
         updateMousePositions(e);
-        toggleCharMenuVisibility();
+        togglePopUpsVisibility();
       }}
       // onMouseMove={trackMousePosition}
     >
       <img src={gameImage} className='game-image' alt='Where is Wally' />
-      {isCharSelectionVisible && (
-        <CharSelectionMenu
-          toggleCharMenuVisibility={toggleCharMenuVisibility}
-        />
-      )}
-      {isTargetVisible && <Target />}
+      {arePopUpsVisible && <CharSelectionMenu />}
+      {arePopUpsVisible && <Target />}
     </div>
   );
 };

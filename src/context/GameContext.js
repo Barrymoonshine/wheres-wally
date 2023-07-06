@@ -41,7 +41,6 @@ export const GameProvider = ({ children }) => {
   };
 
   const checkIfCharFound = (selectedChar) => {
-    console.log('checkIfCharFound called');
     if (isLocationAllowed(selectedChar)) {
       alert(`Congrats you found ${selectedChar}!`);
       dispatch({
@@ -53,13 +52,23 @@ export const GameProvider = ({ children }) => {
     }
   };
 
+  const togglePopUpsVisibility = () => {
+    const newVisibility = state.arePopUpsVisible ? false : true;
+    dispatch({
+      type: ACTIONS.TOGGLE_VISIBILITY,
+      payload: { newVisibility },
+    });
+  };
+
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
     characterLocations: state.characterLocations,
     foundCharacters: state.foundCharacters,
+    arePopUpsVisible: state.arePopUpsVisible,
     updateMousePositions,
     checkIfCharFound,
+    togglePopUpsVisibility,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

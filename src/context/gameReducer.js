@@ -17,6 +17,7 @@ export const initialState = {
     odlaw: false,
     wilma: false,
   },
+  arePopUpsVisible: false,
 };
 
 const gameReducer = (state, action) => {
@@ -33,12 +34,16 @@ const gameReducer = (state, action) => {
         relativePosition: payload.newRelativePosition,
       };
     case ACTIONS.UPDATE_FOUND_CHARACTER:
-      console.log('update found character called');
       return {
         ...state,
         foundCharacters: {
           [payload.selectedChar]: true,
         },
+      };
+    case ACTIONS.TOGGLE_VISIBILITY:
+      return {
+        ...state,
+        arePopUpsVisible: payload.newVisibility,
       };
     default:
       return state;
