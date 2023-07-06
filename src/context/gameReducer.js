@@ -8,9 +8,9 @@ export const initialState = {
   absolutePosition: [],
   relativePosition: [],
   characterLocations: {
-    wally: [1544, 118],
-    odlaw: [96, 906],
-    wilma: [1698, 356],
+    wally: [1541, 246],
+    odlaw: [98, 1037],
+    wilma: [1693, 484],
   },
   foundCharacters: {
     wally: false,
@@ -34,8 +34,6 @@ const gameReducer = (state, action) => {
         relativePosition: payload.newRelativePosition,
       };
     case ACTIONS.UPDATE_FOUND_CHARACTER:
-      console.log('{...state}', { ...state });
-      console.log('payload.updatedChar', payload.updatedChar);
       return {
         ...state,
         foundCharacters: payload.updatedChar,
