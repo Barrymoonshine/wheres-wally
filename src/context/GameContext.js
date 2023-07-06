@@ -44,7 +44,6 @@ export const GameProvider = ({ children }) => {
     if (isLocationAllowed(selectedChar)) {
       alert(`Congrats you found ${selectedChar}!`);
       const updatedChar = { ...state.foundCharacters, [selectedChar]: true };
-      console.log('updatedChar', updatedChar);
       dispatch({
         type: ACTIONS.UPDATE_FOUND_CHARACTER,
         payload: { updatedChar },

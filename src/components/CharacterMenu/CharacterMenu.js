@@ -1,10 +1,10 @@
-import './CharSelectionMenu.css';
+import './CharacterMenu.css';
 import { useGame } from '../../context/GameContext';
 import wallyImg from '../../images/wally.png';
 import odlawImg from '../../images/odlaw.png';
 import wilmaImg from '../../images/wilma.png';
 
-const CharSelectionMenu = () => {
+const CharacterMenu = () => {
   const { relativePosition, foundCharacters, checkIfCharFound } = useGame();
 
   const leftMenuPosition = relativePosition[0] + 20;
@@ -85,4 +85,4 @@ const CharSelectionMenu = () => {
   );
 };
 
-export default CharSelectionMenu;
+export default CharacterMenu;
