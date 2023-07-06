@@ -3,9 +3,9 @@ import gameImage from '../../images/game-board.jpg';
 import { useState } from 'react';
 import CharSelectionMenu from '../CharSelectionMenu/CharSelectionMenu';
 import Target from '../Target/Target';
+import { useGame } from '../../context/GameContext';
 
 const GameArea = () => {
-  const [mousePosition, setMousePosition] = useState({});
   const [charMenuPosition, setCharMenuPosition] = useState({});
   const [charLocations, setCharLocations] = useState({
     wally: [1544, 118],
@@ -20,6 +20,8 @@ const GameArea = () => {
     wilma: false,
   });
 
+  const { absolutePosition } = useGame();
+
   const captureMousePosition = (e) => {
     console.log(
       `captureMousePosition page x Horizontal: ${e.pageX} y Vertical: ${e.pageY}`
@@ -29,10 +31,7 @@ const GameArea = () => {
       horizontalPosition: e.clientX,
       verticalPosition: e.clientY,
     });
-    setMousePosition({
-      horizontalPosition: e.pageX,
-      verticalPosition: e.pageY,
-    });
+
     toggleCharMenuVisibility();
   };
 
@@ -42,11 +41,11 @@ const GameArea = () => {
     setTargetVisibility(newVisibility);
   };
 
-  const trackMousePosition = (e) => {
-    console.log(
-      `trackMousePosition x pages Horizontal: ${e.pageX} y Vertical: ${e.pageY}`
-    );
-  };
+  // const trackMousePosition = (e) => {
+  //   console.log(
+  //     `trackMousePosition x pages Horizontal: ${e.pageX} y Vertical: ${e.pageY}`
+  //   );
+  // };
 
   const areCordsAllowed = (selectedChar) => {
     // Investigate refactoring for loop
@@ -60,11 +59,11 @@ const GameArea = () => {
         permittedCords.push(newArray);
       }
     }
-
+    console.log('absolutePosition', absolutePosition);
     const areCordsPermitted = permittedCords.some(
       (setOfCords) =>
-        setOfCords[0] === mousePosition.horizontalPosition &&
-        setOfCords[1] === mousePosition.verticalPosition
+        setOfCords[0] === absolutePosition[0] &&
+        setOfCords[1] === absolutePosition[1]
     );
 
     return areCordsPermitted;
@@ -84,7 +83,7 @@ const GameArea = () => {
     <div
       className='game-container'
       onMouseDown={captureMousePosition}
-      onMouseMove={trackMousePosition}
+      // onMouseMove={trackMousePosition}
     >
       <img src={gameImage} className='game-image' alt='Where is Wally' />
       {isCharSelectionVisible && (

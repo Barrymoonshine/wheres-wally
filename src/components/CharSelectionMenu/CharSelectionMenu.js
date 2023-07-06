@@ -2,9 +2,12 @@ import './CharSelectionMenu.css';
 import wallyImg from '../../images/wally.png';
 import odlawImg from '../../images/odlaw.png';
 import wilmaImg from '../../images/wilma.png';
+import { useGame } from '../../context/GameContext';
 
 const CharSelectionMenu = (props) => {
   const { charMenuPosition, checkIfCharFound, foundChars } = props;
+
+  const { updateAbsolutePosition } = useGame();
 
   const leftMenuPos = charMenuPosition.horizontalPosition + 20;
   const topMenuPos = charMenuPosition.verticalPosition + 20;
@@ -29,7 +32,8 @@ const CharSelectionMenu = (props) => {
             <div className='menu-button-container'>
               <button
                 className='menu-button'
-                onMouseDown={() => {
+                onMouseDown={(e) => {
+                  updateAbsolutePosition(e);
                   checkIfCharFound('wally');
                 }}
               >
@@ -49,7 +53,8 @@ const CharSelectionMenu = (props) => {
             <div className='menu-button-container'>
               <button
                 className='menu-button'
-                onMouseDown={() => {
+                onMouseDown={(e) => {
+                  updateAbsolutePosition(e);
                   checkIfCharFound('odlaw');
                 }}
               >
@@ -69,7 +74,8 @@ const CharSelectionMenu = (props) => {
             <div className='menu-button-container'>
               <button
                 className='menu-button'
-                onMouseDown={() => {
+                onMouseDown={(e) => {
+                  updateAbsolutePosition(e);
                   checkIfCharFound('wilma');
                 }}
               >
