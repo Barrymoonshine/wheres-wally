@@ -23,30 +23,33 @@ export const GameProvider = ({ children }) => {
   };
 
   const isLocationAllowed = async (selectedChar) => {
-    let charLocations = await getCharLocations();
+    const characterLocations = await getCharLocations();
 
-    console.log('charLocations()', charLocations);
+    console.log('charLocations()', characterLocations);
     // Investigate refactoring for loop
     const allowedLocations = [];
-    console.log('hello I am run after charlocations');
+
     for (let i = -15; i < 16; i += 1) {
       for (let y = -15; y < 16; y += 1) {
         const newArray = [];
-        newArray.push(state.characterLocations[selectedChar][0] + i);
-        newArray.push(state.characterLocations[selectedChar][1] + y);
+        newArray.push(characterLocations[selectedChar][0] + i);
+        newArray.push(characterLocations[selectedChar][1] + y);
         allowedLocations.push(newArray);
       }
     }
+
     const locationAllowed = allowedLocations.some(
       (setOfCords) =>
         setOfCords[0] === state.absolutePosition[0] &&
         setOfCords[1] === state.absolutePosition[1]
     );
+
     return locationAllowed;
   };
 
-  const checkIfCharFound = (selectedChar) => {
-    if (isLocationAllowed(selectedChar)) {
+  const checkIfCharFound = async (selectedChar) => {
+    const locationAllowed = await isLocationAllowed(selectedChar);
+    if (locationAllowed) {
       alert(`Congrats you found ${selectedChar}!`);
       const updatedChar = { ...state.foundCharacters, [selectedChar]: true };
       dispatch({

@@ -7,11 +7,6 @@ export const initialState = {
   // To position the character menu and target components
   absolutePosition: [],
   relativePosition: [],
-  characterLocations: {
-    wally: [1541, 246],
-    odlaw: [98, 1037],
-    wilma: [1693, 484],
-  },
   foundCharacters: {
     wally: false,
     odlaw: false,
