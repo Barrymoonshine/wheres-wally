@@ -1,7 +1,7 @@
 import ACTIONS from '../utils/ACTIONS';
 import { createContext, useReducer, useContext } from 'react';
 import gameReducer, { initialState } from './gameReducer';
-import { runGetDocs } from '../firebase/firebase';
+import { getCharLocations } from '../firebase/firebase';
 
 const GameContext = createContext(initialState);
 export const useGame = () => useContext(GameContext);
@@ -22,10 +22,13 @@ export const GameProvider = ({ children }) => {
     });
   };
 
-  const isLocationAllowed = (selectedChar) => {
-    console.log('runGetDocs()', runGetDocs());
+  const isLocationAllowed = async (selectedChar) => {
+    let charLocations = await getCharLocations();
+
+    console.log('charLocations()', charLocations);
     // Investigate refactoring for loop
     const allowedLocations = [];
+    console.log('hello I am run after charlocations');
     for (let i = -15; i < 16; i += 1) {
       for (let y = -15; y < 16; y += 1) {
         const newArray = [];
