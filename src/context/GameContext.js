@@ -1,6 +1,7 @@
 import ACTIONS from '../utils/ACTIONS';
 import { createContext, useReducer, useContext } from 'react';
 import gameReducer, { initialState } from './gameReducer';
+import { runGetDocs } from '../firebase/firebase';
 
 const GameContext = createContext(initialState);
 export const useGame = () => useContext(GameContext);
@@ -22,6 +23,7 @@ export const GameProvider = ({ children }) => {
   };
 
   const isLocationAllowed = (selectedChar) => {
+    console.log('runGetDocs()', runGetDocs());
     // Investigate refactoring for loop
     const allowedLocations = [];
     for (let i = -15; i < 16; i += 1) {
@@ -64,7 +66,6 @@ export const GameProvider = ({ children }) => {
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
-    characterLocations: state.characterLocations,
     foundCharacters: state.foundCharacters,
     arePopUpsVisible: state.arePopUpsVisible,
     updateMousePositions,

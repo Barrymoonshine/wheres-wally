@@ -1,7 +1,4 @@
 import ACTIONS from '../utils/ACTIONS';
-import { runGetDocs } from '../firebase/firebase';
-
-runGetDocs();
 
 export const initialState = {
   // Absolute position (pageX & Y) is used for checking character locations

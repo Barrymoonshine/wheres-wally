@@ -22,8 +22,18 @@ const colRef = collection(db, 'characterLocations');
 
 // Get collection data
 
+let characterLocations = {};
+
 export const runGetDocs = () => {
   getDocs(colRef).then((snapshot) => {
-    console.log('snapshot.docs', snapshot.docs);
+    snapshot.docs.forEach((doc) => {
+      const key = Object.keys(doc.data()).toString();
+      const value = doc.data()[key];
+      console.log('key', key);
+      console.log('value', value);
+      characterLocations = { ...characterLocations, key: value };
+    });
   });
+  console.log('characterLocations', characterLocations);
+  return characterLocations;
 };
