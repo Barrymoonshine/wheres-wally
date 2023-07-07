@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBWfynwwXOweY2U5PpxKzJBpfjEFHR6Lc4',
@@ -17,5 +17,13 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 
 // Collection ref
+// Separate collection for leader board
+const colRef = collection(db, 'characterLocations');
 
 // Get collection data
+
+export const runGetDocs = () => {
+  getDocs(colRef).then((snapshot) => {
+    console.log('snapshot.docs', snapshot.docs);
+  });
+};
