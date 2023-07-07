@@ -20,17 +20,20 @@ const db = getFirestore();
 const colRef = collection(db, 'characterLocations');
 
 // Get collection data
-
 export const getCharLocations = async () => {
-  let characterLocations = {};
-  await getDocs(colRef).then((snapshot) => {
-    snapshot.docs.forEach((doc) => {
-      const key = Object.keys(doc.data()).toString();
-      const value = doc.data()[key];
-      console.log('key', key);
-      console.log('value', value);
-      characterLocations = { ...characterLocations, [key]: value };
+  try {
+    let characterLocations = {};
+    await getDocs(colRef).then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        const key = Object.keys(doc.data()).toString();
+        const value = doc.data()[key];
+        console.log('key', key);
+        console.log('value', value);
+        characterLocations = { ...characterLocations, [key]: value };
+      });
     });
-  });
-  return characterLocations;
+    return characterLocations;
+  } catch (error) {
+    console.log(`ERROR: ${error}`);
+  }
 };
