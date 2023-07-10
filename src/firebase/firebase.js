@@ -16,23 +16,38 @@ initializeApp(firebaseConfig);
 // Init services
 const db = getFirestore();
 
-// Collection ref
-const colRef = collection(db, 'characterLocations');
+// Collection refs
+const colRefCharLocations = collection(db, 'characterLocations');
+const colRefFoundChars = collection(db, 'foundCharacters');
 
-// Get collection data
+// Data getting functions
 export const getCharLocations = async () => {
   try {
     let characterLocations = {};
-    await getDocs(colRef).then((snapshot) => {
+    await getDocs(colRefCharLocations).then((snapshot) => {
       snapshot.docs.forEach((doc) => {
         const key = Object.keys(doc.data()).toString();
         const value = doc.data()[key];
-        console.log('key', key);
-        console.log('value', value);
         characterLocations = { ...characterLocations, [key]: value };
       });
     });
     return characterLocations;
+  } catch (error) {
+    console.log(`ERROR: ${error}`);
+  }
+};
+
+export const getFoundChars = async () => {
+  try {
+    let foundCharacters = {};
+    await getDocs(colRefFoundChars).then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        const key = Object.keys(doc.data()).toString();
+        const value = doc.data()[key];
+        foundCharacters = { ...foundCharacters, [key]: value };
+      });
+    });
+    return foundCharacters;
   } catch (error) {
     console.log(`ERROR: ${error}`);
   }

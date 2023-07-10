@@ -1,7 +1,7 @@
 import ACTIONS from '../utils/ACTIONS';
 import { createContext, useReducer, useContext } from 'react';
 import gameReducer, { initialState } from './gameReducer';
-import { getCharLocations } from '../firebase/firebase';
+import { getCharLocations, getFoundChars } from '../firebase/firebase';
 
 const GameContext = createContext(initialState);
 export const useGame = () => useContext(GameContext);
@@ -25,7 +25,6 @@ export const GameProvider = ({ children }) => {
   const isLocationAllowed = async (selectedChar) => {
     const characterLocations = await getCharLocations();
 
-    console.log('charLocations()', characterLocations);
     // Investigate refactoring for loop
     const allowedLocations = [];
 
@@ -69,10 +68,11 @@ export const GameProvider = ({ children }) => {
     });
   };
 
+  // UI data stored locally via state, game-critical data store in BaaS
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
-    foundCharacters: state.foundCharacters,
+    foundCharacters: getFoundChars(),
     arePopUpsVisible: state.arePopUpsVisible,
     updateMousePositions,
     checkIfCharFound,

@@ -1,5 +1,6 @@
 import ACTIONS from '../utils/ACTIONS';
 
+// UI, non-game critical data stored locally in state
 export const initialState = {
   // Absolute position (pageX & Y) is used for checking character locations
   // As this value doesn't change when the viewport is re-sized
@@ -7,13 +8,10 @@ export const initialState = {
   // To position the character menu and target components
   absolutePosition: [],
   relativePosition: [],
-  foundCharacters: {
-    wally: false,
-    odlaw: false,
-    wilma: false,
-  },
   arePopUpsVisible: false,
 };
+
+// Game-critical data stored in BaaS
 
 const gameReducer = (state, action) => {
   const { type, payload } = action;
