@@ -1,5 +1,11 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  updateDoc,
+  doc,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBWfynwwXOweY2U5PpxKzJBpfjEFHR6Lc4',
@@ -39,16 +45,34 @@ export const getCharLocations = async () => {
 
 export const getFoundChars = async () => {
   try {
-    let foundCharacters = {};
+    let foundCharacters = [];
     await getDocs(colRefFoundChars).then((snapshot) => {
       snapshot.docs.forEach((doc) => {
-        const key = Object.keys(doc.data()).toString();
-        const value = doc.data()[key];
-        foundCharacters = { ...foundCharacters, [key]: value };
+        foundCharacters.push({ ...doc.data(), id: doc.id });
       });
     });
+    console.log('foundCharacters getFoundChars', foundCharacters);
     return foundCharacters;
   } catch (error) {
     console.log(`ERROR: ${error}`);
   }
+};
+
+const getCharID = async (selectedChar) => {
+  const foundCharacters = await getFoundChars();
+
+  const targetID = foundCharacters[selectedChar].id;
+
+  console.log('targetID', targetID);
+
+  return targetID;
+};
+
+export const updateFoundChar = async (selectedChar) => {
+  const firebaseID = await getCharID(selectedChar);
+  const docRef = doc(db, 'foundCharacters', firebaseID);
+
+  updateDoc(docRef, {
+    [selectedChar]: true,
+  });
 };
