@@ -54,18 +54,20 @@ export const getFoundChars = async () => {
     console.log('foundCharacters getFoundChars', foundCharacters);
     return foundCharacters;
   } catch (error) {
-    console.log(`ERROR: ${error}`);
+    console.log(`ERROR getFoundChars: ${error}`);
   }
 };
 
 const getCharID = async (selectedChar) => {
   const foundCharacters = await getFoundChars();
 
-  const targetID = foundCharacters[selectedChar].id;
+  const targetObject = foundCharacters.find(
+    (character) => character.name === selectedChar
+  );
 
-  console.log('targetID', targetID);
+  console.log('targetObject', targetObject);
 
-  return targetID;
+  return targetObject.id;
 };
 
 export const updateFoundChar = async (selectedChar) => {
@@ -73,6 +75,6 @@ export const updateFoundChar = async (selectedChar) => {
   const docRef = doc(db, 'foundCharacters', firebaseID);
 
   updateDoc(docRef, {
-    [selectedChar]: true,
+    found: true,
   });
 };
