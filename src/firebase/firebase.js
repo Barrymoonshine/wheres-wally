@@ -72,6 +72,7 @@ const getCharID = async (selectedChar) => {
 
 export const updateFoundChar = async (selectedChar) => {
   const firebaseID = await getCharID(selectedChar);
+  console.log('firebaseID', firebaseID);
   const docRef = doc(db, 'foundCharacters', firebaseID);
 
   updateDoc(docRef, {
