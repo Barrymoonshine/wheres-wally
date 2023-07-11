@@ -7,12 +7,10 @@ import { useGame } from './context/GameContext';
 const App = () => {
   const { isStartGameVisible } = useGame();
 
-  console.log('isStartGameVisible', isStartGameVisible);
-
   return (
     <>
-      <Header />
       {isStartGameVisible && <StartGame />}
+      <Header />
       <GameArea />
     </>
   );

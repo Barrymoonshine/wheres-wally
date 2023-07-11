@@ -87,34 +87,37 @@ export const GameProvider = ({ children }) => {
   };
 
   const incrementTime = () => {
-    if (state.time.seconds === 60) {
-      const newTime = {
-        minutes: (state.time.minutes += 1),
-        seconds: 0,
-      };
-      dispatch({
-        type: ACTIONS.INCREMENT_TIME,
-        payload: { newTime },
-      });
-    } else {
-      const newSeconds = (state.time.seconds += 1);
-      console.log('newSeconds', newSeconds);
-      const newTime = {
-        minutes: state.time.minutes,
-        seconds: (state.time.seconds += 1),
-      };
+    // if (state.time.seconds === 60) {
+    //   const newTime = {
+    //     minutes: (state.time.minutes += 1),
+    //     seconds: 0,
+    //   };
+    //   dispatch({
+    //     type: ACTIONS.INCREMENT_TIME,
+    //     payload: { newTime },
+    //   });
+    // } else {
 
-      dispatch({
-        type: ACTIONS.INCREMENT_TIME,
-        payload: { newTime },
-      });
-    }
+    const newTime = {
+      minutes: state.time.minutes,
+      seconds: (state.time.seconds += 1),
+    };
+    console.log('newTime', newTime);
+
+    dispatch({
+      type: ACTIONS.INCREMENT_TIME,
+      payload: { newTime },
+    });
   };
 
   const startGame = () => {
+    console.log('start game called');
     dispatch({
       type: ACTIONS.START_GAME,
     });
+    setInterval(() => {
+      incrementTime();
+    }, 1000);
   };
 
   const value = {
