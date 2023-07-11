@@ -51,7 +51,6 @@ export const getFoundChars = async () => {
         foundCharacters.push({ ...doc.data(), id: doc.id });
       });
     });
-    console.log('foundCharacters getFoundChars', foundCharacters);
     return foundCharacters;
   } catch (error) {
     console.log(`ERROR getFoundChars: ${error}`);
@@ -60,22 +59,17 @@ export const getFoundChars = async () => {
 
 const getCharID = async (selectedChar) => {
   const foundCharacters = await getFoundChars();
-
   const targetObject = foundCharacters.find(
     (character) => character.name === selectedChar
   );
-
-  console.log('targetObject', targetObject);
-
   return targetObject.id;
 };
 
 export const updateFoundChar = async (selectedChar) => {
   const firebaseID = await getCharID(selectedChar);
-  console.log('firebaseID', firebaseID);
   const docRef = doc(db, 'foundCharacters', firebaseID);
 
   updateDoc(docRef, {
-    found: true,
+    [`${selectedChar}Found`]: true,
   });
 };

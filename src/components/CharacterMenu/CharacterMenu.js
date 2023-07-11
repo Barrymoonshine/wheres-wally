@@ -10,6 +10,8 @@ const CharacterMenu = () => {
   const leftMenuPosition = relativePosition[0] + 20;
   const topMenuPosition = relativePosition[1] + 20;
 
+  console.log('foundCharacters CharacterMenu', foundCharacters);
+
   return (
     <div
       className='char-selection-menu'
@@ -21,7 +23,7 @@ const CharacterMenu = () => {
     >
       <ul>
         <li>
-          {foundCharacters.wally ? (
+          {foundCharacters[0].wallyFound ? (
             <div className='char-found-container'>
               <img className='menu-images' src={wallyImg} alt='Wally' />
               Found!
@@ -41,7 +43,7 @@ const CharacterMenu = () => {
           )}
         </li>
         <li>
-          {foundCharacters.odlaw ? (
+          {foundCharacters[1].odlawFound ? (
             <div className='char-found-container'>
               <img className='menu-images' src={odlawImg} alt='Odlaw' />
               Found!
@@ -61,7 +63,7 @@ const CharacterMenu = () => {
           )}
         </li>
         <li>
-          {foundCharacters.wilma ? (
+          {foundCharacters[2].wilmaFound ? (
             <div className='char-found-container'>
               <img className='menu-images' src={wilmaImg} alt='Odlaw' />
               Found!

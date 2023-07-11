@@ -10,10 +10,9 @@ export const initialState = {
   absolutePosition: [],
   relativePosition: [],
   arePopUpsVisible: false,
+  foundCharacters: undefined,
+  isLoading: true,
 };
-
-// Game-critical data stored in BaaS..
-// .. foundCharacters
 
 const gameReducer = (state, action) => {
   const { type, payload } = action;
@@ -34,6 +33,18 @@ const gameReducer = (state, action) => {
       return {
         ...state,
         arePopUpsVisible: payload.newVisibility,
+      };
+    case ACTIONS.SET_FOUND_CHARS:
+      console.log('set found chars called');
+      return {
+        ...state,
+        foundCharacters: payload.foundChars,
+      };
+    case ACTIONS.UPDATE_IS_LOADING:
+      console.log('UPDATE_IS_LOADING called');
+      return {
+        ...state,
+        isLoading: false,
       };
     default:
       return state;

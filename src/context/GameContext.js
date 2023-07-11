@@ -67,15 +67,31 @@ export const GameProvider = ({ children }) => {
     });
   };
 
+  const setFoundChars = async () => {
+    const foundChars = await getFoundChars();
+    dispatch({
+      type: ACTIONS.SET_FOUND_CHARS,
+      payload: { foundChars },
+    });
+    // On page load, update isLoading
+    if (state.isLoading) {
+      dispatch({
+        type: ACTIONS.UPDATE_IS_LOADING,
+      });
+    }
+  };
+
   // UI data stored locally via state, game-critical data store in BaaS
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
-    foundCharacters: getFoundChars(),
+    foundCharacters: state.foundCharacters,
     arePopUpsVisible: state.arePopUpsVisible,
+    isLoading: state.isLoading,
     updateMousePositions,
     checkIfCharFound,
     togglePopUpsVisibility,
+    setFoundChars,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
