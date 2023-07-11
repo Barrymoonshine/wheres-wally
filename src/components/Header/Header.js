@@ -1,5 +1,4 @@
 import './Header.css';
-import { useEffect } from 'react';
 import { useGame } from '../../context/GameContext';
 import wallyImg from '../../images/wally.png';
 import odlawImg from '../../images/odlaw.png';
@@ -7,14 +6,7 @@ import wilmaImg from '../../images/wilma.png';
 import Timer from '../Timer/Timer';
 
 const Header = () => {
-  const { foundCharacters, incrementTime } = useGame();
-
-  useEffect(() => {
-    // Start timer on page load (potentially move to a new start game component)
-    setInterval(() => {
-      incrementTime();
-    }, 1000);
-  }, []);
+  const { foundCharacters } = useGame();
 
   return (
     <div className='header-container'>

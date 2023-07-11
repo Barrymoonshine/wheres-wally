@@ -111,6 +111,12 @@ export const GameProvider = ({ children }) => {
     }
   };
 
+  const startGame = () => {
+    dispatch({
+      type: ACTIONS.START_GAME,
+    });
+  };
+
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
@@ -122,6 +128,7 @@ export const GameProvider = ({ children }) => {
     checkIfCharFound,
     togglePopUpsVisibility,
     incrementTime,
+    startGame,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

@@ -7,6 +7,7 @@ const ACTIONS = {
   SET_IS_LOADING_FALSE: 'set-is-loading-to-false',
   SET_GAME_OVER_TRUE: 'set-game-over-true',
   INCREMENT_TIME: 'increment-timer',
+  START_GAME: 'start-the-game',
 };
 
 export default ACTIONS;

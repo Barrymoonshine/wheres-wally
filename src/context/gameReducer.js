@@ -5,7 +5,7 @@ export const initialState = {
   relativePosition: [],
   arePopUpsVisible: false,
   foundCharacters: { wally: false, odlaw: false, wilma: false },
-  isLoading: true,
+  isStartGameVisible: true,
   gameOver: false,
   time: { minutes: 0, seconds: 0 },
 };
@@ -53,7 +53,11 @@ const gameReducer = (state, action) => {
         ...state,
         time: payload.newTime,
       };
-
+    case ACTIONS.START_GAME:
+      return {
+        ...state,
+        isStartGameVisible: false,
+      };
     default:
       return state;
   }
