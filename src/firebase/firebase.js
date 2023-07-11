@@ -26,7 +26,7 @@ const db = getFirestore();
 const colRefCharLocations = collection(db, 'characterLocations');
 const colRefFoundChars = collection(db, 'foundCharacters');
 
-// Data getting functions
+// Data getters
 export const getCharLocations = async () => {
   try {
     let characterLocations = {};
@@ -65,11 +65,12 @@ const getCharID = async (selectedChar) => {
   return targetObject.id;
 };
 
+// Update Firestore
 export const updateFoundChar = async (selectedChar) => {
   const firebaseID = await getCharID(selectedChar);
   const docRef = doc(db, 'foundCharacters', firebaseID);
 
   updateDoc(docRef, {
-    [`${selectedChar}Found`]: true,
+    [`found`]: true,
   });
 };

@@ -1,16 +1,12 @@
 import ACTIONS from '../utils/ACTIONS';
 
-// UI, non-game critical data stored locally in state
 export const initialState = {
-  // Absolute position (pageX & Y) is used for checking character locations
-  // As this value doesn't change when the viewport is re-sized
-  // Relative position (clientX & Y) is relative to view port size and used
-  // To position the character menu and target components
   absolutePosition: [],
   relativePosition: [],
   arePopUpsVisible: false,
   foundCharacters: undefined,
   isLoading: true,
+  gameOver: false,
 };
 
 const gameReducer = (state, action) => {
@@ -41,10 +37,16 @@ const gameReducer = (state, action) => {
         ...state,
         foundCharacters: payload.foundChars,
       };
-    case ACTIONS.UPDATE_IS_LOADING:
+    case ACTIONS.SET_IS_LOADING_FALSE:
       return {
         ...state,
         isLoading: false,
+      };
+    case ACTIONS.SET_GAME_OVER_TRUE:
+      console.log('set game over true called');
+      return {
+        ...state,
+        gameOver: true,
       };
     default:
       return state;

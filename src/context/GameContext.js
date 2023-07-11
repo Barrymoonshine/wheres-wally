@@ -53,20 +53,20 @@ export const GameProvider = ({ children }) => {
   const checkIfCharFound = async (selectedChar) => {
     const locationAllowed = await isLocationAllowed(selectedChar);
     if (locationAllowed) {
+      // Update character in state, and FireStore
       alert(`Congrats you found ${selectedChar}!`);
       const updatedCharArray = state.foundCharacters.map((chars) => {
         if (chars.name === selectedChar) {
-          return { ...chars, [`${selectedChar}Found`]: true };
+          return { ...chars, found: true };
         }
         return chars;
       });
-
-      console.log('updatedCharArray', updatedCharArray);
       dispatch({
         type: ACTIONS.UPDATE_FOUND_CHARACTER,
         payload: { updatedCharArray },
       });
       updateFoundChar(selectedChar);
+      checkForEndGame(updatedCharArray);
     } else {
       alert('Character not found, try again!');
     }
@@ -89,12 +89,25 @@ export const GameProvider = ({ children }) => {
     // On page load, update isLoading to false
     if (state.isLoading) {
       dispatch({
-        type: ACTIONS.UPDATE_IS_LOADING,
+        type: ACTIONS.SET_IS_LOADING_FALSE,
       });
     }
   };
 
-  // UI data stored locally via state, game-critical data store in BaaS
+  const checkForEndGame = (updatedCharArray) => {
+    console.log('checkForEndGame called', checkForEndGame);
+    const areAllCharsFound = updatedCharArray.reduce(
+      (acc, curr) => acc + curr.found,
+      0
+    );
+    console.log('areAllCharsFound', areAllCharsFound);
+    // Truthy equates to 1, if all truthy total is 3
+    areAllCharsFound === 3 &&
+      dispatch({
+        type: ACTIONS.SET_GAME_OVER_TRUE,
+      });
+  };
+
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,

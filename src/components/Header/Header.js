@@ -13,8 +13,6 @@ const Header = () => {
     setFoundChars();
   }, []);
 
-  console.log('foundCharacters in Header', foundCharacters);
-
   return (
     <div className='header-container'>
       {isLoading ? (
@@ -31,7 +29,7 @@ const Header = () => {
                   src={wallyImg}
                   alt='Wally'
                   style={
-                    foundCharacters[0].wallyFound
+                    foundCharacters[0].found
                       ? { objectFit: 'cover', opacity: 0.4 }
                       : {}
                   }
@@ -43,7 +41,7 @@ const Header = () => {
                   src={odlawImg}
                   alt='Odlaw'
                   style={
-                    foundCharacters[1].odlawFound
+                    foundCharacters[1].found
                       ? { objectFit: 'cover', opacity: 0.4 }
                       : {}
                   }
@@ -55,7 +53,7 @@ const Header = () => {
                   src={wilmaImg}
                   alt='Wilma'
                   style={
-                    foundCharacters[2].wilmaFound
+                    foundCharacters[2].found
                       ? { objectFit: 'cover', opacity: 0.4 }
                       : {}
                   }
