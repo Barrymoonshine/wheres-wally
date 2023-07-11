@@ -9,19 +9,16 @@ const Header = () => {
   const { isLoading, foundCharacters, setFoundChars } = useGame();
 
   useEffect(() => {
+    // Run setFoundChars on page load to grab data from FS and update isLoading
     setFoundChars();
   }, []);
 
-  console.log('foundCharacters Header', foundCharacters);
-
-  console.log('isLoading Header', isLoading);
-
   return (
-    <nav className='header-container'>
+    <div className='header-container'>
       {isLoading ? (
         'Page is loading...'
       ) : (
-        <div>
+        <nav className='nav-container'>
           <div className='title'>Where's Wally</div>
           <div className='timer'>Insert timer here</div>
           <div className='characters'>
@@ -64,9 +61,9 @@ const Header = () => {
               </li>
             </ul>
           </div>
-        </div>
+        </nav>
       )}
-    </nav>
+    </div>
   );
 };
 

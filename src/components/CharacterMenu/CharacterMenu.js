@@ -10,8 +10,6 @@ const CharacterMenu = () => {
   const leftMenuPosition = relativePosition[0] + 20;
   const topMenuPosition = relativePosition[1] + 20;
 
-  console.log('foundCharacters CharacterMenu', foundCharacters);
-
   return (
     <div
       className='char-selection-menu'
