@@ -3,9 +3,9 @@ import ACTIONS from '../utils/ACTIONS';
 export const initialState = {
   absolutePosition: [],
   relativePosition: [],
-  arePopUpsVisible: false,
   foundCharacters: { wally: false, odlaw: false, wilma: false },
   isStartGameVisible: true,
+  arePopUpsVisible: false,
   gameOver: false,
   time: { minutes: 0, seconds: 0 },
 };

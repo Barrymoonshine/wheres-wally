@@ -8,28 +8,26 @@ const StartGame = () => {
   const { startGame } = useGame();
 
   return (
-    <div>
-      <div className='start-game-modal'>
-        <div className='modal-content'>
-          <div className='modal-header'>Find all three characters to win</div>
-          <ul>
-            <li className='start-game-character-containers'>
-              <img className='start-game-images' src={wallyImg} alt='Wally' />
-              Wally
-            </li>
-            <li className='start-game-character-containers'>
-              <img className='start-game-images' src={odlawImg} alt='Wally' />
-              Odlaw
-            </li>
-            <li className='start-game-character-containers'>
-              <img className='start-game-images' src={wilmaImg} alt='Wally' />
-              Wilma
-            </li>
-          </ul>
-          <button className='start-game-button' onClick={() => startGame()}>
-            Start
-          </button>
-        </div>
+    <div className='start-game-modal'>
+      <div className='modal-content'>
+        <div className='modal-header'>Find all three characters to win</div>
+        <ul>
+          <li className='start-game-character-containers'>
+            <img className='start-game-images' src={wallyImg} alt='Wally' />
+            Wally
+          </li>
+          <li className='start-game-character-containers'>
+            <img className='start-game-images' src={odlawImg} alt='Wally' />
+            Odlaw
+          </li>
+          <li className='start-game-character-containers'>
+            <img className='start-game-images' src={wilmaImg} alt='Wally' />
+            Wilma
+          </li>
+        </ul>
+        <button className='start-game-button' onClick={() => startGame()}>
+          Start
+        </button>
       </div>
     </div>
   );

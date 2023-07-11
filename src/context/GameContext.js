@@ -124,6 +124,7 @@ export const GameProvider = ({ children }) => {
     arePopUpsVisible: state.arePopUpsVisible,
     isLoading: state.isLoading,
     time: state.time,
+    isStartGameVisible: state.isStartGameVisible,
     updateMousePositions,
     checkIfCharFound,
     togglePopUpsVisibility,
