@@ -13,6 +13,8 @@ const Header = () => {
     setFoundChars();
   }, []);
 
+  console.log('foundCharacters in Header', foundCharacters);
+
   return (
     <div className='header-container'>
       {isLoading ? (

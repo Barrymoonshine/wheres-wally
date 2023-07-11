@@ -1,5 +1,4 @@
 import ACTIONS from '../utils/ACTIONS';
-import { updateFoundChar } from '../firebase/firebase';
 
 // UI, non-game critical data stored locally in state
 export const initialState = {
@@ -28,20 +27,21 @@ const gameReducer = (state, action) => {
         relativePosition: payload.newRelativePosition,
       };
     case ACTIONS.UPDATE_FOUND_CHARACTER:
-      return updateFoundChar(payload.selectedChar);
+      return {
+        ...state,
+        foundCharacters: payload.updatedCharArray,
+      };
     case ACTIONS.TOGGLE_VISIBILITY:
       return {
         ...state,
         arePopUpsVisible: payload.newVisibility,
       };
     case ACTIONS.SET_FOUND_CHARS:
-      console.log('set found chars called');
       return {
         ...state,
         foundCharacters: payload.foundChars,
       };
     case ACTIONS.UPDATE_IS_LOADING:
-      console.log('UPDATE_IS_LOADING called');
       return {
         ...state,
         isLoading: false,

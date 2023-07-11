@@ -1,7 +1,11 @@
 import ACTIONS from '../utils/ACTIONS';
 import { createContext, useReducer, useContext } from 'react';
 import gameReducer, { initialState } from './gameReducer';
-import { getCharLocations, getFoundChars } from '../firebase/firebase';
+import {
+  getCharLocations,
+  getFoundChars,
+  updateFoundChar,
+} from '../firebase/firebase';
 
 const GameContext = createContext(initialState);
 export const useGame = () => useContext(GameContext);
@@ -50,10 +54,19 @@ export const GameProvider = ({ children }) => {
     const locationAllowed = await isLocationAllowed(selectedChar);
     if (locationAllowed) {
       alert(`Congrats you found ${selectedChar}!`);
+      const updatedCharArray = state.foundCharacters.map((chars) => {
+        if (chars.name === selectedChar) {
+          return { ...chars, [`${selectedChar}Found`]: true };
+        }
+        return chars;
+      });
+
+      console.log('updatedCharArray', updatedCharArray);
       dispatch({
         type: ACTIONS.UPDATE_FOUND_CHARACTER,
-        payload: { selectedChar },
+        payload: { updatedCharArray },
       });
+      updateFoundChar(selectedChar);
     } else {
       alert('Character not found, try again!');
     }
@@ -73,7 +86,7 @@ export const GameProvider = ({ children }) => {
       type: ACTIONS.SET_FOUND_CHARS,
       payload: { foundChars },
     });
-    // On page load, update isLoading
+    // On page load, update isLoading to false
     if (state.isLoading) {
       dispatch({
         type: ACTIONS.UPDATE_IS_LOADING,
