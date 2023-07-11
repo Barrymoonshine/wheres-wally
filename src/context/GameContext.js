@@ -1,11 +1,7 @@
 import ACTIONS from '../utils/ACTIONS';
 import { createContext, useReducer, useContext } from 'react';
 import gameReducer, { initialState } from './gameReducer';
-import {
-  getCharLocations,
-  getFoundChars,
-  updateFoundChar,
-} from '../firebase/firebase';
+import { getCharLocations } from '../firebase/firebase';
 
 const GameContext = createContext(initialState);
 export const useGame = () => useContext(GameContext);
@@ -55,18 +51,15 @@ export const GameProvider = ({ children }) => {
     if (locationAllowed) {
       // Update character in state, and FireStore
       alert(`Congrats you found ${selectedChar}!`);
-      const updatedCharArray = state.foundCharacters.map((chars) => {
-        if (chars.name === selectedChar) {
-          return { ...chars, found: true };
-        }
-        return chars;
-      });
+      const updatedCharObject = {
+        ...state.foundCharacters,
+        [selectedChar]: true,
+      };
       dispatch({
         type: ACTIONS.UPDATE_FOUND_CHARACTER,
-        payload: { updatedCharArray },
+        payload: { updatedCharObject },
       });
-      updateFoundChar(selectedChar);
-      checkForEndGame(updatedCharArray);
+      checkForEndGame(updatedCharObject);
     } else {
       alert('Character not found, try again!');
     }
@@ -80,26 +73,11 @@ export const GameProvider = ({ children }) => {
     });
   };
 
-  const setFoundChars = async () => {
-    const foundChars = await getFoundChars();
-    dispatch({
-      type: ACTIONS.SET_FOUND_CHARS,
-      payload: { foundChars },
-    });
-    // On page load, update isLoading to false
-    if (state.isLoading) {
-      dispatch({
-        type: ACTIONS.SET_IS_LOADING_FALSE,
-      });
-    }
-  };
-
-  const checkForEndGame = (updatedCharArray) => {
+  const checkForEndGame = (updatedCharObject) => {
     console.log('checkForEndGame called', checkForEndGame);
-    const areAllCharsFound = updatedCharArray.reduce(
-      (acc, curr) => acc + curr.found,
-      0
-    );
+    const areAllCharsFound = Object.keys(updatedCharObject)
+      .map((key) => updatedCharObject[key])
+      .reduce((acc, curr) => acc + curr, 0);
     console.log('areAllCharsFound', areAllCharsFound);
     // Truthy equates to 1, if all truthy total is 3
     areAllCharsFound === 3 &&
@@ -108,16 +86,42 @@ export const GameProvider = ({ children }) => {
       });
   };
 
+  const incrementTime = () => {
+    if (state.time.seconds === 60) {
+      const newTime = {
+        minutes: (state.time.minutes += 1),
+        seconds: 0,
+      };
+      dispatch({
+        type: ACTIONS.INCREMENT_TIME,
+        payload: { newTime },
+      });
+    } else {
+      const newSeconds = (state.time.seconds += 1);
+      console.log('newSeconds', newSeconds);
+      const newTime = {
+        minutes: state.time.minutes,
+        seconds: (state.time.seconds += 1),
+      };
+
+      dispatch({
+        type: ACTIONS.INCREMENT_TIME,
+        payload: { newTime },
+      });
+    }
+  };
+
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
     foundCharacters: state.foundCharacters,
     arePopUpsVisible: state.arePopUpsVisible,
     isLoading: state.isLoading,
+    time: state.time,
     updateMousePositions,
     checkIfCharFound,
     togglePopUpsVisibility,
-    setFoundChars,
+    incrementTime,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

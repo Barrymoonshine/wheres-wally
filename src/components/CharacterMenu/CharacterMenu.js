@@ -21,7 +21,7 @@ const CharacterMenu = () => {
     >
       <ul>
         <li>
-          {foundCharacters[0].found ? (
+          {foundCharacters.wally ? (
             <div className='char-found-container'>
               <img className='menu-images' src={wallyImg} alt='Wally' />
               Found!
@@ -41,7 +41,7 @@ const CharacterMenu = () => {
           )}
         </li>
         <li>
-          {foundCharacters[1].found ? (
+          {foundCharacters.odlaw ? (
             <div className='char-found-container'>
               <img className='menu-images' src={odlawImg} alt='Odlaw' />
               Found!
@@ -61,7 +61,7 @@ const CharacterMenu = () => {
           )}
         </li>
         <li>
-          {foundCharacters[2].found ? (
+          {foundCharacters.wilma ? (
             <div className='char-found-container'>
               <img className='menu-images' src={wilmaImg} alt='Odlaw' />
               Found!

@@ -4,9 +4,10 @@ export const initialState = {
   absolutePosition: [],
   relativePosition: [],
   arePopUpsVisible: false,
-  foundCharacters: undefined,
+  foundCharacters: { wally: false, odlaw: false, wilma: false },
   isLoading: true,
   gameOver: false,
+  time: { minutes: 0, seconds: 0 },
 };
 
 const gameReducer = (state, action) => {
@@ -25,7 +26,7 @@ const gameReducer = (state, action) => {
     case ACTIONS.UPDATE_FOUND_CHARACTER:
       return {
         ...state,
-        foundCharacters: payload.updatedCharArray,
+        foundCharacters: payload.updatedCharObject,
       };
     case ACTIONS.TOGGLE_VISIBILITY:
       return {
@@ -43,11 +44,16 @@ const gameReducer = (state, action) => {
         isLoading: false,
       };
     case ACTIONS.SET_GAME_OVER_TRUE:
-      console.log('set game over true called');
       return {
         ...state,
         gameOver: true,
       };
+    case ACTIONS.INCREMENT_TIME:
+      return {
+        ...state,
+        time: payload.newTime,
+      };
+
     default:
       return state;
   }
