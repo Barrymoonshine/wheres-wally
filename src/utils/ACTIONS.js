@@ -8,6 +8,7 @@ const ACTIONS = {
   // Toggle game over may not be needed as not needed for UI purposes
   TOGGLE_GAME_OVER: 'toggle-game-over-value',
   TOGGLE_WINNER_FORM_VISIBILITY: 'toggle-winner-form-visibility',
+  TOGGLE_LEADER_BOARD_VISIBILITY: 'toggle-leader-board-visibility',
   UPDATE_WINNER_NAME: 'update-name-of-winner',
 };
 

@@ -57,10 +57,14 @@ const gameReducer = (state, action) => {
         nameInput: payload.newName,
       };
     case ACTIONS.TOGGLE_WINNER_FORM_VISIBILITY:
-      console.log('TOGGLE_WINNER_FORM_VISIBILITY');
       return {
         ...state,
-        isWinnerFormVisible: payload.newFormVisibility,
+        isWinnerFormVisible: payload.newVisibility,
+      };
+    case ACTIONS.TOGGLE_LEADER_BOARD_VISIBILITY:
+      return {
+        ...state,
+        isLeaderBoardVisible: payload.newVisibility,
       };
     default:
       return state;

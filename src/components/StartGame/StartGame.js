@@ -9,7 +9,7 @@ const StartGame = () => {
 
   return (
     <div className='start-game-modal'>
-      <div className='modal-content'>
+      <div className='start-game-modal-content'>
         <div className='modal-header'>Find all three characters to win</div>
         <ul>
           <li className='start-game-character-containers'>

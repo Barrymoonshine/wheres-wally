@@ -1,7 +1,7 @@
 import ACTIONS from '../utils/ACTIONS';
 import { createContext, useReducer, useContext } from 'react';
 import gameReducer, { initialState } from './gameReducer';
-import { getCharLocations } from '../firebase/firebase';
+import { getCharLocations, addToLeaderBoard } from '../firebase/firebase';
 import { formatTime, capitaliseFirstLetter } from '../utils/utilFunctions';
 
 const GameContext = createContext(initialState);
@@ -76,6 +76,14 @@ export const GameProvider = ({ children }) => {
     });
   };
 
+  const toggleWinnerForm = () => {
+    const newVisibility = state.isWinnerFormVisible ? false : true;
+    dispatch({
+      type: ACTIONS.TOGGLE_WINNER_FORM_VISIBILITY,
+      payload: { newVisibility },
+    });
+  };
+
   const checkForEndGame = (updatedCharObject) => {
     console.log('check for end game called');
     const areAllCharsFound = Object.keys(updatedCharObject)
@@ -85,11 +93,7 @@ export const GameProvider = ({ children }) => {
     if (areAllCharsFound === 3) {
       console.log('all chars found ');
       // Truthy equates to 1, if all chars found = truthy, total is 3
-      const newFormVisibility = state.isWinnerFormVisible ? false : true;
-      dispatch({
-        type: ACTIONS.TOGGLE_WINNER_FORM_VISIBILITY,
-        payload: { newFormVisibility },
-      });
+      toggleWinnerForm();
       stopTimer();
     }
   };
@@ -130,21 +134,35 @@ export const GameProvider = ({ children }) => {
   };
 
   const handleInput = (e) => {
-    const { name } = e.target;
-    const newName = name.value;
+    const newName = e.target.value;
     dispatch({
       type: ACTIONS.UPDATE_WINNER_NAME,
       payload: { newName },
     });
   };
 
+  const toggleLeaderBoard = () => {
+    const newVisibility = state.isLeaderBoardVisible ? false : true;
+    dispatch({
+      type: ACTIONS.TOGGLE_LEADER_BOARD_VISIBILITY,
+      payload: { newVisibility },
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name } = e.target;
-    // Time...
-    console.log('handleSubmit called');
 
-    // Write data to fireBase
+    console.log('handleSubmit called');
+    const newPlayer = {
+      name: state.nameInput,
+      seconds: state.seconds,
+    };
+    // Write data to Firestore
+    addToLeaderBoard(newPlayer);
+    //hide winnerform
+    toggleWinnerForm();
+    //show leaderboard
+    toggleLeaderBoard();
   };
 
   const stopTimer = () => {

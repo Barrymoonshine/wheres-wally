@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBWfynwwXOweY2U5PpxKzJBpfjEFHR6Lc4',
@@ -18,6 +18,7 @@ const db = getFirestore();
 
 // Collection refs
 const colRefCharLocations = collection(db, 'characterLocations');
+const colRefLeaderBoard = collection(db, 'leaderBoard');
 
 // Data getters
 export const getCharLocations = async () => {
@@ -34,4 +35,9 @@ export const getCharLocations = async () => {
   } catch (error) {
     console.log(`ERROR: ${error}`);
   }
+};
+
+export const addToLeaderBoard = (newPlayer) => {
+  console.log('newPlayer', newPlayer);
+  addDoc(colRefLeaderBoard, { newPlayer });
 };

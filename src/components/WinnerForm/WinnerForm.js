@@ -16,13 +16,13 @@ const WinnerForm = () => {
 
   return (
     <div className='winner-form-modal'>
-      <div className='modal-content'>
-        <p>Congrats you found all the characters!</p>
+      <div className='winner-form-modal-content'>
+        <p>Congrats you found Wally and his friends!</p>
         <p>
           Total time: {calcMinutes}:{calcSeconds}
         </p>
-
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className='name-form' onSubmit={(e) => handleSubmit(e)}>
+          <label htmlFor='name'>Name:</label>
           <input
             type='text'
             name='nameInput'
