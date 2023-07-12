@@ -7,7 +7,10 @@ export const initialState = {
   absolutePosition: [],
   relativePosition: [],
   foundCharacters: { wally: false, odlaw: false, wilma: false },
+  isWinnerFormVisible: false,
   isGameOver: false,
+  isLeaderBoardVisible: false,
+  nameInput: '',
 };
 
 const gameReducer = (state, action) => {
@@ -47,6 +50,17 @@ const gameReducer = (state, action) => {
       return {
         ...state,
         isStartGameVisible: false,
+      };
+    case ACTIONS.UPDATE_WINNER_NAME:
+      return {
+        ...state,
+        nameInput: payload.newName,
+      };
+    case ACTIONS.TOGGLE_WINNER_FORM_VISIBILITY:
+      console.log('TOGGLE_WINNER_FORM_VISIBILITY');
+      return {
+        ...state,
+        isWinnerFormVisible: payload.newFormVisibility,
       };
     default:
       return state;

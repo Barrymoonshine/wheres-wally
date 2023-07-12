@@ -74,20 +74,28 @@ export const GameProvider = ({ children }) => {
   };
 
   const checkForEndGame = (updatedCharObject) => {
+    console.log('check for end game called');
     const areAllCharsFound = Object.keys(updatedCharObject)
       .map((key) => updatedCharObject[key])
       .reduce((acc, curr) => acc + curr, 0);
 
     if (areAllCharsFound === 3) {
+      console.log('all chars found ');
       // Truthy equates to 1, if all chars found = truthy, total is 3
-      const newGameOver = state.isGameOver ? false : true;
+      // May not need isGameOver as it isn't needed for UI control
+      //   const newGameOver = state.isGameOver ? false : true;
+      //   dispatch({
+      //     type: ACTIONS.TOGGLE_GAME_OVER,
+      //     payload: { newGameOver },
+      //   });
+      // }
+      const newFormVisibility = state.isWinnerFormVisible ? false : true;
       dispatch({
-        type: ACTIONS.TOGGLE_GAME_OVER,
-        payload: { newGameOver },
+        type: ACTIONS.TOGGLE_WINNER_FORM_VISIBILITY,
+        payload: { newFormVisibility },
       });
     }
   };
-
   const incrementSeconds = () => {
     const newSeconds = (state.seconds += 1);
     dispatch({
@@ -123,6 +131,15 @@ export const GameProvider = ({ children }) => {
     });
   };
 
+  const handleInput = (e) => {
+    const { name } = e.target;
+    const newName = name.value;
+    dispatch({
+      type: ACTIONS.UPDATE_WINNER_NAME,
+      payload: { newName },
+    });
+  };
+
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
@@ -131,6 +148,9 @@ export const GameProvider = ({ children }) => {
     seconds: state.seconds,
     isStartGameVisible: state.isStartGameVisible,
     isGameOver: state.isGameOver,
+    nameInput: state.nameInput,
+    isWinnerFormVisible: state.isWinnerFormVisible,
+    isLeaderBoardVisible: state.isLeaderBoardVisible,
     updateMousePositions,
     checkIfCharFound,
     toggleTargetMenuVisibility,
@@ -138,6 +158,7 @@ export const GameProvider = ({ children }) => {
     getMinutes,
     getSeconds,
     playAgain,
+    handleInput,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
