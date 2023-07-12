@@ -2,7 +2,7 @@ import ACTIONS from '../utils/ACTIONS';
 import { createContext, useReducer, useContext } from 'react';
 import gameReducer, { initialState } from './gameReducer';
 import { getCharLocations } from '../firebase/firebase';
-import { formatTime } from '../utils/formatTime';
+import { formatTime, capitaliseFirstLetter } from '../utils/utilFunctions';
 
 const GameContext = createContext(initialState);
 export const useGame = () => useContext(GameContext);
@@ -50,8 +50,7 @@ export const GameProvider = ({ children }) => {
   const checkIfCharFound = async (selectedChar) => {
     const locationAllowed = await isLocationAllowed(selectedChar);
     if (locationAllowed) {
-      // Update character in state, and FireStore
-      alert(`Congrats you found ${selectedChar}!`);
+      alert(`Congrats you found ${capitaliseFirstLetter(selectedChar)}!`);
       const updatedCharObject = {
         ...state.foundCharacters,
         [selectedChar]: true,
@@ -78,19 +77,15 @@ export const GameProvider = ({ children }) => {
     const areAllCharsFound = Object.keys(updatedCharObject)
       .map((key) => updatedCharObject[key])
       .reduce((acc, curr) => acc + curr, 0);
-    console.log('areAllCharsFound', areAllCharsFound);
-    // Truthy equates to 1, if all chars found = truthy, total is 3
+
     if (areAllCharsFound === 3) {
+      // Truthy equates to 1, if all chars found = truthy, total is 3
       const newGameOver = state.isGameOver ? false : true;
       dispatch({
-        type: ACTIONS.SET_GAME_OVER_TRUE,
+        type: ACTIONS.TOGGLE_GAME_OVER,
         payload: { newGameOver },
       });
     }
-    // Come back to when working on Leader Board
-    // dispatch({
-    //   type: ACTIONS.SET_GAME_OVER_TRUE,
-    // });
   };
 
   const incrementSeconds = () => {

@@ -1,12 +1,12 @@
 import ACTIONS from '../utils/ACTIONS';
 
 export const initialState = {
+  isStartGameVisible: true,
+  seconds: 0,
+  isTargetMenuVisible: false,
   absolutePosition: [],
   relativePosition: [],
   foundCharacters: { wally: false, odlaw: false, wilma: false },
-  seconds: 0,
-  isStartGameVisible: true,
-  isTargetMenuVisible: false,
   isGameOver: false,
 };
 
