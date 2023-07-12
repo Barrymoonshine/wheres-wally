@@ -2,12 +2,13 @@ import './Timer.css';
 import { useGame } from '../../context/GameContext';
 
 const Timer = () => {
-  const { time } = useGame();
+  const { seconds, getMinutes } = useGame();
+
+  const minutes = getMinutes(seconds);
 
   return (
     <div>
-      <span id='minute'>{time.minutes}</span>:
-      <span id='second'>{time.seconds}</span>
+      <span id='minute'>{minutes}</span>:<span id='second'>{seconds}</span>
     </div>
   );
 };

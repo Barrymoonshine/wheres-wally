@@ -6,7 +6,7 @@ const ACTIONS = {
   SET_FOUND_CHARS: 'set-initial-state-for-found-characters',
   SET_IS_LOADING_FALSE: 'set-is-loading-to-false',
   SET_GAME_OVER_TRUE: 'set-game-over-true',
-  INCREMENT_TIME: 'increment-timer',
+  INCREMENT_SECONDS: 'increment-seconds-by-one',
   START_GAME: 'start-the-game',
 };
 

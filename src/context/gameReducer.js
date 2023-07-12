@@ -7,7 +7,7 @@ export const initialState = {
   isStartGameVisible: true,
   arePopUpsVisible: false,
   gameOver: false,
-  time: { minutes: 0, seconds: 0 },
+  seconds: 0,
 };
 
 const gameReducer = (state, action) => {
@@ -48,10 +48,10 @@ const gameReducer = (state, action) => {
         ...state,
         gameOver: true,
       };
-    case ACTIONS.INCREMENT_TIME:
+    case ACTIONS.INCREMENT_SECONDS:
       return {
         ...state,
-        time: payload.newTime,
+        seconds: payload.newSeconds,
       };
     case ACTIONS.START_GAME:
       return {

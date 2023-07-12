@@ -86,29 +86,15 @@ export const GameProvider = ({ children }) => {
       });
   };
 
-  const incrementTime = () => {
-    // if (state.time.seconds === 60) {
-    //   const newTime = {
-    //     minutes: (state.time.minutes += 1),
-    //     seconds: 0,
-    //   };
-    //   dispatch({
-    //     type: ACTIONS.INCREMENT_TIME,
-    //     payload: { newTime },
-    //   });
-    // } else {
-
-    const newTime = {
-      minutes: state.time.minutes,
-      seconds: (state.time.seconds += 1),
-    };
-    console.log('newTime', newTime);
-
+  const incrementSeconds = () => {
+    const newSeconds = (state.seconds += 1);
     dispatch({
-      type: ACTIONS.INCREMENT_TIME,
-      payload: { newTime },
+      type: ACTIONS.INCREMENT_SECONDS,
+      payload: { newSeconds },
     });
   };
+
+  const getMinutes = (seconds) => Math.floor(seconds / 60);
 
   const startGame = () => {
     console.log('start game called');
@@ -116,7 +102,7 @@ export const GameProvider = ({ children }) => {
       type: ACTIONS.START_GAME,
     });
     setInterval(() => {
-      incrementTime();
+      incrementSeconds();
     }, 1000);
   };
 
@@ -126,13 +112,13 @@ export const GameProvider = ({ children }) => {
     foundCharacters: state.foundCharacters,
     arePopUpsVisible: state.arePopUpsVisible,
     isLoading: state.isLoading,
-    time: state.time,
+    seconds: state.seconds,
     isStartGameVisible: state.isStartGameVisible,
     updateMousePositions,
     checkIfCharFound,
     togglePopUpsVisibility,
-    incrementTime,
     startGame,
+    getMinutes,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
