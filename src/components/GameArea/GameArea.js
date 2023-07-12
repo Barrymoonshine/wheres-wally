@@ -1,24 +1,27 @@
 import './GameArea.css';
 import gameImage from '../../images/game-board.jpg';
-import CharacterMenu from '../CharacterMenu/CharacterMenu';
 import Target from '../Target/Target';
+import CharacterMenu from '../CharacterMenu/CharacterMenu';
 import { useGame } from '../../context/GameContext';
 
 const GameArea = () => {
-  const { updateMousePositions, arePopUpsVisible, togglePopUpsVisibility } =
-    useGame();
+  const {
+    updateMousePositions,
+    isTargetMenuVisible,
+    toggleTargetMenuVisibility,
+  } = useGame();
 
   return (
     <div
       className='game-container'
       onMouseDown={(e) => {
         updateMousePositions(e);
-        togglePopUpsVisibility();
+        toggleTargetMenuVisibility();
       }}
     >
       <img src={gameImage} className='game-image' alt='Where is Wally' />
-      {arePopUpsVisible && <CharacterMenu />}
-      {arePopUpsVisible && <Target />}
+      {isTargetMenuVisible && <Target />}
+      {isTargetMenuVisible && <CharacterMenu />}
     </div>
   );
 };

@@ -4,10 +4,11 @@ export const initialState = {
   absolutePosition: [],
   relativePosition: [],
   foundCharacters: { wally: false, odlaw: false, wilma: false },
-  isStartGameVisible: true,
-  arePopUpsVisible: false,
-  gameOver: false,
   seconds: 0,
+  isStartGameVisible: true,
+  isTargetMenuVisible: false,
+  isLeaderBoardVisible: false,
+  gameOver: false,
 };
 
 const gameReducer = (state, action) => {
@@ -28,20 +29,10 @@ const gameReducer = (state, action) => {
         ...state,
         foundCharacters: payload.updatedCharObject,
       };
-    case ACTIONS.TOGGLE_VISIBILITY:
+    case ACTIONS.TOGGLE_TARGET_MENU_VISIBILITY:
       return {
         ...state,
-        arePopUpsVisible: payload.newVisibility,
-      };
-    case ACTIONS.SET_FOUND_CHARS:
-      return {
-        ...state,
-        foundCharacters: payload.foundChars,
-      };
-    case ACTIONS.SET_IS_LOADING_FALSE:
-      return {
-        ...state,
-        isLoading: false,
+        isTargetMenuVisible: payload.newVisibility,
       };
     case ACTIONS.SET_GAME_OVER_TRUE:
       return {

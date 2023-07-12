@@ -66,25 +66,28 @@ export const GameProvider = ({ children }) => {
     }
   };
 
-  const togglePopUpsVisibility = () => {
-    const newVisibility = state.arePopUpsVisible ? false : true;
+  const toggleTargetMenuVisibility = () => {
+    const newVisibility = state.isTargetMenuVisible ? false : true;
     dispatch({
-      type: ACTIONS.TOGGLE_VISIBILITY,
+      type: ACTIONS.TOGGLE_TARGET_MENU_VISIBILITY,
       payload: { newVisibility },
     });
   };
 
   const checkForEndGame = (updatedCharObject) => {
-    console.log('checkForEndGame called', checkForEndGame);
     const areAllCharsFound = Object.keys(updatedCharObject)
       .map((key) => updatedCharObject[key])
       .reduce((acc, curr) => acc + curr, 0);
     console.log('areAllCharsFound', areAllCharsFound);
-    // Truthy equates to 1, if all truthy total is 3
+    // Truthy equates to 1, if all chars found = truthy, total is 3
     areAllCharsFound === 3 &&
       dispatch({
         type: ACTIONS.SET_GAME_OVER_TRUE,
       });
+    // Come back to when working on Leader Board
+    // dispatch({
+    //   type: ACTIONS.SET_GAME_OVER_TRUE,
+    // });
   };
 
   const incrementSeconds = () => {
@@ -113,13 +116,13 @@ export const GameProvider = ({ children }) => {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
     foundCharacters: state.foundCharacters,
-    arePopUpsVisible: state.arePopUpsVisible,
+    isTargetMenuVisible: state.isTargetMenuVisible,
     isLoading: state.isLoading,
     seconds: state.seconds,
     isStartGameVisible: state.isStartGameVisible,
     updateMousePositions,
     checkIfCharFound,
-    togglePopUpsVisibility,
+    toggleTargetMenuVisibility,
     startGame,
     getMinutes,
     getSeconds,
