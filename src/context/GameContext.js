@@ -2,6 +2,7 @@ import ACTIONS from '../utils/ACTIONS';
 import { createContext, useReducer, useContext } from 'react';
 import gameReducer, { initialState } from './gameReducer';
 import { getCharLocations } from '../firebase/firebase';
+import { formatTime } from '../utils/formatTime';
 
 const GameContext = createContext(initialState);
 export const useGame = () => useContext(GameContext);
@@ -94,9 +95,9 @@ export const GameProvider = ({ children }) => {
     });
   };
 
-  const getMinutes = (seconds) => Math.floor(seconds / 60);
+  const getMinutes = (seconds) => formatTime(Math.floor(seconds / 60));
 
-  const getSeconds = (seconds) => seconds % 60;
+  const getSeconds = (seconds) => formatTime(seconds % 60);
 
   const startGame = () => {
     console.log('start game called');
