@@ -7,8 +7,7 @@ export const initialState = {
   seconds: 0,
   isStartGameVisible: true,
   isTargetMenuVisible: false,
-  isLeaderBoardVisible: false,
-  gameOver: false,
+  isGameOver: false,
 };
 
 const gameReducer = (state, action) => {
@@ -34,10 +33,10 @@ const gameReducer = (state, action) => {
         ...state,
         isTargetMenuVisible: payload.newVisibility,
       };
-    case ACTIONS.SET_GAME_OVER_TRUE:
+    case ACTIONS.TOGGLE_GAME_OVER:
       return {
         ...state,
-        gameOver: true,
+        isGameOver: payload.newGameOver,
       };
     case ACTIONS.INCREMENT_SECONDS:
       return {

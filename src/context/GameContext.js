@@ -80,10 +80,13 @@ export const GameProvider = ({ children }) => {
       .reduce((acc, curr) => acc + curr, 0);
     console.log('areAllCharsFound', areAllCharsFound);
     // Truthy equates to 1, if all chars found = truthy, total is 3
-    areAllCharsFound === 3 &&
+    if (areAllCharsFound === 3) {
+      const newGameOver = state.isGameOver ? false : true;
       dispatch({
         type: ACTIONS.SET_GAME_OVER_TRUE,
+        payload: { newGameOver },
       });
+    }
     // Come back to when working on Leader Board
     // dispatch({
     //   type: ACTIONS.SET_GAME_OVER_TRUE,
@@ -120,6 +123,7 @@ export const GameProvider = ({ children }) => {
     isLoading: state.isLoading,
     seconds: state.seconds,
     isStartGameVisible: state.isStartGameVisible,
+    isGameOver: state.isGameOver,
     updateMousePositions,
     checkIfCharFound,
     toggleTargetMenuVisibility,

@@ -6,12 +6,12 @@ import LeaderBoard from './components/LeaderBoard/LeaderBoard';
 import { useGame } from './context/GameContext';
 
 const App = () => {
-  const { isStartGameVisible, isLeaderBoardVisible } = useGame();
+  const { isStartGameVisible, isGameOver } = useGame();
 
   return (
     <>
       {isStartGameVisible && <StartGame />}
-      {isLeaderBoardVisible && <LeaderBoard />}
+      {isGameOver && <LeaderBoard />}
       <Header />
       <GameArea />
     </>
