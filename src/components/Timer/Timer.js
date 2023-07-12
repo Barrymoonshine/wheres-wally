@@ -8,7 +8,7 @@ const Timer = () => {
   const calcMinutes = getMinutes(seconds);
 
   return (
-    <div>
+    <div className='timer'>
       <span id='minute'>{calcMinutes}</span>:
       <span id='second'>{calcSeconds}</span>
     </div>
