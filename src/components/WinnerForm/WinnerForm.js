@@ -2,7 +2,14 @@ import './WinnerForm.css';
 import { useGame } from '../../context/GameContext';
 
 const WinnerForm = () => {
-  const { seconds, getSeconds, getMinutes, nameInput, handleInput } = useGame();
+  const {
+    seconds,
+    getSeconds,
+    getMinutes,
+    nameInput,
+    handleInput,
+    handleSubmit,
+  } = useGame();
 
   const calcSeconds = getSeconds(seconds);
   const calcMinutes = getMinutes(seconds);
@@ -15,7 +22,7 @@ const WinnerForm = () => {
           Total time: {calcMinutes}:{calcSeconds}
         </p>
 
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <input
             type='text'
             name='nameInput'

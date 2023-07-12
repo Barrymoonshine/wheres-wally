@@ -7,6 +7,9 @@ import { formatTime, capitaliseFirstLetter } from '../utils/utilFunctions';
 const GameContext = createContext(initialState);
 export const useGame = () => useContext(GameContext);
 
+// Declare intervalID in function wide scope for access in stopTimer
+let intervalID;
+
 export const GameProvider = ({ children }) => {
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
@@ -82,20 +85,15 @@ export const GameProvider = ({ children }) => {
     if (areAllCharsFound === 3) {
       console.log('all chars found ');
       // Truthy equates to 1, if all chars found = truthy, total is 3
-      // May not need isGameOver as it isn't needed for UI control
-      //   const newGameOver = state.isGameOver ? false : true;
-      //   dispatch({
-      //     type: ACTIONS.TOGGLE_GAME_OVER,
-      //     payload: { newGameOver },
-      //   });
-      // }
       const newFormVisibility = state.isWinnerFormVisible ? false : true;
       dispatch({
         type: ACTIONS.TOGGLE_WINNER_FORM_VISIBILITY,
         payload: { newFormVisibility },
       });
+      stopTimer();
     }
   };
+
   const incrementSeconds = () => {
     const newSeconds = (state.seconds += 1);
     dispatch({
@@ -113,7 +111,7 @@ export const GameProvider = ({ children }) => {
     dispatch({
       type: ACTIONS.START_GAME,
     });
-    setInterval(() => {
+    intervalID = setInterval(() => {
       incrementSeconds();
     }, 1000);
   };
@@ -140,6 +138,19 @@ export const GameProvider = ({ children }) => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name } = e.target;
+    // Time...
+    console.log('handleSubmit called');
+
+    // Write data to fireBase
+  };
+
+  const stopTimer = () => {
+    clearInterval(intervalID);
+  };
+
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
@@ -159,6 +170,7 @@ export const GameProvider = ({ children }) => {
     getSeconds,
     playAgain,
     handleInput,
+    handleSubmit,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
