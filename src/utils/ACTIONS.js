@@ -10,6 +10,7 @@ const ACTIONS = {
   TOGGLE_WINNER_FORM_VISIBILITY: 'toggle-winner-form-visibility',
   TOGGLE_LEADER_BOARD_VISIBILITY: 'toggle-leader-board-visibility',
   UPDATE_WINNER_NAME: 'update-name-of-winner',
+  SET_LEADER_BOARD: 'set-leader-board-state',
 };
 
 export default ACTIONS;

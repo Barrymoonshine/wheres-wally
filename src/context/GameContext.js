@@ -1,7 +1,11 @@
 import ACTIONS from '../utils/ACTIONS';
 import { createContext, useReducer, useContext } from 'react';
 import gameReducer, { initialState } from './gameReducer';
-import { getCharLocations, addToLeaderBoard } from '../firebase/firebase';
+import {
+  getCharLocations,
+  addToLeaderBoard,
+  getLeaderBoard,
+} from '../firebase/firebase';
 import { formatTime, capitaliseFirstLetter } from '../utils/utilFunctions';
 
 const GameContext = createContext(initialState);
@@ -149,7 +153,7 @@ export const GameProvider = ({ children }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log('handleSubmit called');
@@ -157,8 +161,17 @@ export const GameProvider = ({ children }) => {
       name: state.nameInput,
       seconds: state.seconds,
     };
-    // Write data to Firestore
+    // Add data to Firestore
     addToLeaderBoard(newPlayer);
+
+    // Get data inc. new player from fireStore
+    const leaderBoardArray = await getLeaderBoard();
+
+    // Add data to state
+    dispatch({
+      type: ACTIONS.SET_LEADER_BOARD,
+      payload: { leaderBoardArray },
+    });
     //hide winnerform
     toggleWinnerForm();
     //show leaderboard
@@ -180,6 +193,7 @@ export const GameProvider = ({ children }) => {
     nameInput: state.nameInput,
     isWinnerFormVisible: state.isWinnerFormVisible,
     isLeaderBoardVisible: state.isLeaderBoardVisible,
+    leaderBoard: state.leaderBoard,
     updateMousePositions,
     checkIfCharFound,
     toggleTargetMenuVisibility,

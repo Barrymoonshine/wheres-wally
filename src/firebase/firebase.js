@@ -33,11 +33,24 @@ export const getCharLocations = async () => {
     });
     return characterLocations;
   } catch (error) {
-    console.log(`ERROR: ${error}`);
+    console.log(`ERROR, getCharLocations: ${error}`);
+  }
+};
+
+export const getLeaderBoard = async () => {
+  try {
+    let leaderBoard = [];
+    await getDocs(colRefLeaderBoard).then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        leaderBoard.push({ ...doc.data(), id: doc.id });
+      });
+    });
+    return leaderBoard;
+  } catch (error) {
+    console.log(`ERROR getLeaderBoard: ${error}`);
   }
 };
 
 export const addToLeaderBoard = (newPlayer) => {
-  console.log('newPlayer', newPlayer);
-  addDoc(colRefLeaderBoard, { newPlayer });
+  addDoc(colRefLeaderBoard, { ...newPlayer });
 };

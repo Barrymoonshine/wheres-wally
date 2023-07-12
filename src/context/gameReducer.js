@@ -11,6 +11,7 @@ export const initialState = {
   isGameOver: false,
   isLeaderBoardVisible: false,
   nameInput: '',
+  leaderBoard: [],
 };
 
 const gameReducer = (state, action) => {
@@ -65,6 +66,11 @@ const gameReducer = (state, action) => {
       return {
         ...state,
         isLeaderBoardVisible: payload.newVisibility,
+      };
+    case ACTIONS.SET_LEADER_BOARD:
+      return {
+        ...state,
+        leaderBoard: payload.leaderBoardArray,
       };
     default:
       return state;

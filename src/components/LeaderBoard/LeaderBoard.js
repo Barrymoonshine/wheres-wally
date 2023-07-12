@@ -2,16 +2,21 @@ import './LeaderBoard.css';
 import { useGame } from '../../context/GameContext';
 
 const LeaderBoard = () => {
-  const { playAgain } = useGame();
+  const { playAgain, leaderBoard } = useGame();
+
+  console.log('leaderBoard', leaderBoard);
+
   return (
     <div className='leader-board-modal'>
-      <div className='modal-content'>
+      <div className='leader-board-modal-content'>
         <div className='modal-header'>Leader board</div>
-        Congrats you found all the characters!
+        Dynamically populate list with top ten from Firebase
         <ul>
-          <li>Name - Time</li>
-          <li>Name - Time</li>
-          <li>Name - Time</li>
+          {leaderBoard.map((player) => (
+            <li key={player.id}>
+              Name: {player.name} Time : {player.seconds}
+            </li>
+          ))}
         </ul>
         <button className='play-again-button' onClick={() => playAgain()}>
           Play again?
