@@ -96,6 +96,8 @@ export const GameProvider = ({ children }) => {
 
   const getMinutes = (seconds) => Math.floor(seconds / 60);
 
+  const getSeconds = (seconds) => seconds % 60;
+
   const startGame = () => {
     console.log('start game called');
     dispatch({
@@ -119,6 +121,7 @@ export const GameProvider = ({ children }) => {
     togglePopUpsVisibility,
     startGame,
     getMinutes,
+    getSeconds,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
