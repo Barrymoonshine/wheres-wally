@@ -110,12 +110,24 @@ export const GameProvider = ({ children }) => {
     }, 1000);
   };
 
+  const playAgain = () => {
+    const newGameOver = state.isGameOver ? false : true;
+    const updatedCharObject = { wally: false, odlaw: false, wilma: false };
+    dispatch({
+      type: ACTIONS.TOGGLE_GAME_OVER,
+      payload: { newGameOver },
+    });
+    dispatch({
+      type: ACTIONS.UPDATE_FOUND_CHARACTER,
+      payload: { updatedCharObject },
+    });
+  };
+
   const value = {
     absolutePosition: state.absolutePosition,
     relativePosition: state.relativePosition,
     foundCharacters: state.foundCharacters,
     isTargetMenuVisible: state.isTargetMenuVisible,
-    isLoading: state.isLoading,
     seconds: state.seconds,
     isStartGameVisible: state.isStartGameVisible,
     isGameOver: state.isGameOver,
@@ -125,6 +137,7 @@ export const GameProvider = ({ children }) => {
     startGame,
     getMinutes,
     getSeconds,
+    playAgain,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
