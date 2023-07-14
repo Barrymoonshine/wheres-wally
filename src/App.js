@@ -4,11 +4,15 @@ import GameArea from './components/GameArea/GameArea';
 import StartGame from './components/StartGame/StartGame';
 import LeaderBoard from './components/LeaderBoard/LeaderBoard';
 import WinnerForm from './components/WinnerForm/WinnerForm';
-import { useGame } from './context/GameContext';
+import useGameState from './hook/useGameState';
 
 const App = () => {
+  // Previous state and methods
+  // const { isStartGameVisible, isLeaderBoardVisible, isWinnerFormVisible } =
+  //   useGame();
+
   const { isStartGameVisible, isLeaderBoardVisible, isWinnerFormVisible } =
-    useGame();
+    useGameState();
 
   return (
     <>

@@ -5,7 +5,8 @@ import wilmaImg from '../../images/wilma.png';
 import { useGame } from '../../context/GameContext';
 
 const StartGame = () => {
-  const { startGame } = useGame();
+  // Previous method accessed
+  // const { startGame } = useGame();
 
   return (
     <div className='start-game-modal'>
@@ -25,7 +26,10 @@ const StartGame = () => {
             Wilma
           </li>
         </ul>
-        <button className='start-game-button' onClick={() => startGame()}>
+        <button
+          className='start-game-button'
+          // onClick={() => startGame()}
+        >
           Start
         </button>
       </div>

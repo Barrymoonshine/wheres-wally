@@ -1,16 +1,20 @@
 import './Timer.css';
-import { useGame } from '../../context/GameContext';
+import useGameState from '../../hooks/useGameState';
 
 const Timer = () => {
-  const { seconds, getSeconds, getMinutes } = useGame();
+  // Previous state and methods accessed
+  // const { seconds, getSeconds, getMinutes } = useGame();
 
-  const calcSeconds = getSeconds(seconds);
-  const calcMinutes = getMinutes(seconds);
+  const { seconds } = useGameState();
+
+  //TBC
+  // const calcSeconds = getSeconds(seconds);
+  // const calcMinutes = getMinutes(seconds);
 
   return (
     <div className='timer'>
-      <span id='minute'>{calcMinutes}</span>:
-      <span id='second'>{calcSeconds}</span>
+      {/* <span id='minute'>{calcMinutes}</span>:
+      <span id='second'>{calcSeconds}</span> */}
     </div>
   );
 };

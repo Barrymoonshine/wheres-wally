@@ -1,10 +1,11 @@
 import './LeaderBoard.css';
-import { useGame } from '../../context/GameContext';
+import useGameState from '../../hooks/GameContext';
 
 const LeaderBoard = () => {
-  const { playAgain, leaderBoard } = useGame();
+  // Previous state and method accessed
+  // const { playAgain, leaderBoard } = useGame();
 
-  console.log('leaderBoard', leaderBoard);
+  const { leaderBoard } = useGameState();
 
   return (
     <div className='leader-board-modal'>
@@ -18,7 +19,10 @@ const LeaderBoard = () => {
             </li>
           ))}
         </ul>
-        <button className='play-again-button' onClick={() => playAgain()}>
+        <button
+          className='play-again-button'
+          // onClick={() => playAgain()}
+        >
           Play again?
         </button>
       </div>

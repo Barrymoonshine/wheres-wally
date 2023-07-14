@@ -1,12 +1,12 @@
 import './Header.css';
-import { useGame } from '../../context/GameContext';
+import useGameState from '../../hooks/useGameState';
 import wallyImg from '../../images/wally.png';
 import odlawImg from '../../images/odlaw.png';
 import wilmaImg from '../../images/wilma.png';
 import Timer from '../Timer/Timer';
 
 const Header = () => {
-  const { foundCharacters } = useGame();
+  const { foundCharacters } = useGameState();
 
   return (
     <div className='header-container'>
