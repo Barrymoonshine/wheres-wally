@@ -1,10 +1,9 @@
 import './Timer.css';
 import useGameState from '../../hooks/useGameState';
-import useGameDispatch from '../../hooks/useGameDispatch';
+import { getSeconds, getMinutes } from '../../helpers/helpers';
 
 const Timer = () => {
   const { seconds } = useGameState();
-  const { getSeconds, getMinutes } = useGameDispatch();
 
   const calcSeconds = getSeconds(seconds);
   const calcMinutes = getMinutes(seconds);

@@ -1,11 +1,11 @@
 import './WinnerForm.css';
 import useGameState from '../../hooks/useGameState';
 import useGameDispatch from '../../hooks/useGameDispatch';
+import { getMinutes, getSeconds } from '../../helpers/helpers';
 
 const WinnerForm = () => {
   const { seconds, nameInput } = useGameState();
-  const { getSeconds, getMinutes, handleInput, handleSubmit } =
-    useGameDispatch();
+  const { handleInput, handleSubmit } = useGameDispatch();
 
   const calcSeconds = getSeconds(seconds);
   const calcMinutes = getMinutes(seconds);

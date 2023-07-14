@@ -6,13 +6,13 @@ import {
   getLeaderBoard,
 } from '../firebase/firebase';
 import ACTIONS from '../utils/ACTIONS';
-import { capitaliseFirstLetter, formatTime } from '../utils/utilFunctions';
+import { capitaliseFirstLetter } from '../utils/utilFunctions';
+
+// Declare intervalID in file scope for access in stopTimer and startGame
+let intervalID;
 
 const useGameDispatch = () => {
   const { state, dispatch } = useContext(GameContext);
-
-  // Declare intervalID in function wide scope for access in stopTimer and startGame
-  let intervalID;
 
   const updateMousePositions = (e) => {
     const newAbsolutePosition = [e.pageX, e.pageY];
@@ -85,6 +85,11 @@ const useGameDispatch = () => {
     });
   };
 
+  const stopTimer = () => {
+    console.log('stop time called');
+    clearInterval(intervalID);
+  };
+
   const checkForEndGame = (updatedCharObject) => {
     console.log('check for end game called');
     const areAllCharsFound = Object.keys(updatedCharObject)
@@ -106,10 +111,6 @@ const useGameDispatch = () => {
       payload: { newSeconds },
     });
   };
-
-  const getMinutes = (seconds) => formatTime(Math.floor(seconds / 60));
-
-  const getSeconds = (seconds) => formatTime(seconds % 60);
 
   const startGame = () => {
     console.log('start game called');
@@ -174,17 +175,11 @@ const useGameDispatch = () => {
     toggleLeaderBoard();
   };
 
-  const stopTimer = () => {
-    clearInterval(intervalID);
-  };
-
   return {
     updateMousePositions,
     checkIfCharFound,
     toggleTargetMenuVisibility,
     startGame,
-    getMinutes,
-    getSeconds,
     playAgain,
     handleInput,
     handleSubmit,
