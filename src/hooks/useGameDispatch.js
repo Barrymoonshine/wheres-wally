@@ -1,12 +1,9 @@
 import { useContext } from 'react';
 import { GameContext } from '../context/GameContext';
-import {
-  getCharLocations,
-  addToLeaderBoard,
-  getLeaderBoard,
-} from '../firebase/firebase';
+import { addToLeaderBoard, getLeaderBoard } from '../firebase/firebase';
 import ACTIONS from '../utils/ACTIONS';
 import { capitaliseFirstLetter } from '../utils/utilFunctions';
+import { isLocationAllowed } from '../helpers/helpers';
 
 // Declare intervalID in file scope for access in stopTimer and startGame
 let intervalID;
@@ -27,32 +24,11 @@ const useGameDispatch = () => {
     });
   };
 
-  const isLocationAllowed = async (selectedChar) => {
-    const characterLocations = await getCharLocations();
-
-    // Investigate refactoring for loop
-    const allowedLocations = [];
-
-    for (let i = -15; i < 16; i += 1) {
-      for (let y = -15; y < 16; y += 1) {
-        const newArray = [];
-        newArray.push(characterLocations[selectedChar][0] + i);
-        newArray.push(characterLocations[selectedChar][1] + y);
-        allowedLocations.push(newArray);
-      }
-    }
-
-    const locationAllowed = allowedLocations.some(
-      (setOfCords) =>
-        setOfCords[0] === state.absolutePosition[0] &&
-        setOfCords[1] === state.absolutePosition[1]
-    );
-
-    return locationAllowed;
-  };
-
   const checkIfCharFound = async (selectedChar) => {
-    const locationAllowed = await isLocationAllowed(selectedChar);
+    const locationAllowed = await isLocationAllowed(
+      selectedChar,
+      state.absolutePosition
+    );
     if (locationAllowed) {
       alert(`Congrats you found ${capitaliseFirstLetter(selectedChar)}!`);
       const updatedCharObject = {
