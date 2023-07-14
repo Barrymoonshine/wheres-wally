@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { gameContext } from '../context/GameContext';
+import { GameContext } from '../context/GameContext';
 
 const useGameState = () => {
-  const { state } = useContext(gameContext);
+  const { state } = useContext(GameContext);
 
   return {
     absolutePosition: state.absolutePosition,

@@ -1,12 +1,11 @@
 import './StartGame.css';
+import useGameDispatch from '../../hooks/useGameDispatch';
 import wallyImg from '../../images/wally.png';
 import odlawImg from '../../images/odlaw.png';
 import wilmaImg from '../../images/wilma.png';
-import { useGame } from '../../context/GameContext';
 
 const StartGame = () => {
-  // Previous method accessed
-  // const { startGame } = useGame();
+  const { startGame } = useGameDispatch();
 
   return (
     <div className='start-game-modal'>
@@ -26,10 +25,7 @@ const StartGame = () => {
             Wilma
           </li>
         </ul>
-        <button
-          className='start-game-button'
-          // onClick={() => startGame()}
-        >
+        <button className='start-game-button' onClick={() => startGame()}>
           Start
         </button>
       </div>
