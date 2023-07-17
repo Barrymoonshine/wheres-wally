@@ -7,8 +7,6 @@ export const getSeconds = (seconds) => formatTime(seconds % 60);
 
 export const isLocationAllowed = async (selectedChar, absolutePosition) => {
   const characterLocations = await getCharLocations();
-
-  // Investigate refactoring for loop
   const allowedLocations = [];
 
   for (let i = -15; i < 16; i += 1) {
@@ -25,6 +23,5 @@ export const isLocationAllowed = async (selectedChar, absolutePosition) => {
       setOfCords[0] === absolutePosition[0] &&
       setOfCords[1] === absolutePosition[1]
   );
-
   return locationAllowed;
 };

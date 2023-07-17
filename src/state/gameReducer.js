@@ -34,7 +34,7 @@ const gameReducer = (state, action) => {
     case ACTIONS.TOGGLE_TARGET_MENU_VISIBILITY:
       return {
         ...state,
-        isTargetMenuVisible: payload.newVisibility,
+        isTargetMenuVisible: !state.isTargetMenuVisible,
       };
     case ACTIONS.INCREMENT_SECONDS:
       return {
@@ -54,12 +54,12 @@ const gameReducer = (state, action) => {
     case ACTIONS.TOGGLE_WINNER_FORM_VISIBILITY:
       return {
         ...state,
-        isWinnerFormVisible: payload.newVisibility,
+        isWinnerFormVisible: !state.isWinnerFormVisible,
       };
     case ACTIONS.TOGGLE_LEADER_BOARD_VISIBILITY:
       return {
         ...state,
-        isLeaderBoardVisible: payload.newVisibility,
+        isLeaderBoardVisible: !state.isLeaderBoardVisible,
       };
     case ACTIONS.SET_LEADER_BOARD:
       return {

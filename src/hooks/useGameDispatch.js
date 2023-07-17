@@ -46,18 +46,14 @@ const useGameDispatch = () => {
   };
 
   const toggleTargetMenuVisibility = () => {
-    const newVisibility = state.isTargetMenuVisible ? false : true;
     dispatch({
       type: ACTIONS.TOGGLE_TARGET_MENU_VISIBILITY,
-      payload: { newVisibility },
     });
   };
 
   const toggleWinnerForm = () => {
-    const newVisibility = state.isWinnerFormVisible ? false : true;
     dispatch({
       type: ACTIONS.TOGGLE_WINNER_FORM_VISIBILITY,
-      payload: { newVisibility },
     });
   };
 
@@ -95,12 +91,9 @@ const useGameDispatch = () => {
   };
 
   const playAgain = async () => {
-    const newVisibility = state.isLeaderBoardVisible ? false : true;
     const updatedCharObject = { wally: false, odlaw: false, wilma: false };
-
     dispatch({
       type: ACTIONS.TOGGLE_LEADER_BOARD_VISIBILITY,
-      payload: { newVisibility },
     });
     dispatch({
       type: ACTIONS.UPDATE_FOUND_CHARACTER,
@@ -126,10 +119,8 @@ const useGameDispatch = () => {
   };
 
   const toggleLeaderBoard = () => {
-    const newVisibility = state.isLeaderBoardVisible ? false : true;
     dispatch({
       type: ACTIONS.TOGGLE_LEADER_BOARD_VISIBILITY,
-      payload: { newVisibility },
     });
     resetTimer();
   };
