@@ -11,7 +11,6 @@ const useGameState = () => {
     isTargetMenuVisible: state.isTargetMenuVisible,
     seconds: state.seconds,
     isStartGameVisible: state.isStartGameVisible,
-    isGameOver: state.isGameOver,
     nameInput: state.nameInput,
     isWinnerFormVisible: state.isWinnerFormVisible,
     isLeaderBoardVisible: state.isLeaderBoardVisible,

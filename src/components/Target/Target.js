@@ -2,13 +2,12 @@ import useGameState from '../../hooks/useGameState';
 
 const Target = () => {
   const { relativePosition } = useGameState();
-  const leftTargetPosition = relativePosition[0] - 30;
-  const topTargetPosition = relativePosition[1] - 30;
+
   return (
     <div
       style={{
-        left: `${leftTargetPosition}px`,
-        top: `${topTargetPosition}px`,
+        left: `${relativePosition[0] - 30}px`,
+        top: `${relativePosition[1] - 30}px`,
         position: 'fixed',
         border: '5px dotted red',
         width: '50px',

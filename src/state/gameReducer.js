@@ -8,7 +8,6 @@ export const initialState = {
   relativePosition: [],
   foundCharacters: { wally: false, odlaw: false, wilma: false },
   isWinnerFormVisible: false,
-  isGameOver: false,
   isLeaderBoardVisible: false,
   nameInput: '',
   leaderBoard: [],
@@ -36,11 +35,6 @@ const gameReducer = (state, action) => {
       return {
         ...state,
         isTargetMenuVisible: payload.newVisibility,
-      };
-    case ACTIONS.TOGGLE_GAME_OVER:
-      return {
-        ...state,
-        isGameOver: payload.newGameOver,
       };
     case ACTIONS.INCREMENT_SECONDS:
       return {

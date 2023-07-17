@@ -7,15 +7,12 @@ const WinnerForm = () => {
   const { seconds, nameInput } = useGameState();
   const { handleInput, handleSubmit } = useGameDispatch();
 
-  const calcSeconds = getSeconds(seconds);
-  const calcMinutes = getMinutes(seconds);
-
   return (
     <div className='winner-form-modal'>
       <div className='winner-form-modal-content'>
         <p>Congrats you found Wally and his friends!</p>
         <p>
-          Total time: {calcMinutes}:{calcSeconds}
+          Total time: {getMinutes(seconds)}:{getSeconds(seconds)}
         </p>
         <form className='name-form' onSubmit={(e) => handleSubmit(e)}>
           <label htmlFor='name'>Name:</label>

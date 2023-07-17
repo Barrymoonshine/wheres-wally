@@ -9,15 +9,12 @@ const CharacterMenu = () => {
   const { relativePosition, foundCharacters } = useGameState();
   const { checkIfCharFound } = useGameDispatch();
 
-  const leftMenuPosition = relativePosition[0] + 20;
-  const topMenuPosition = relativePosition[1] + 20;
-
   return (
     <div
       className='char-selection-menu'
       style={{
-        left: `${leftMenuPosition}px`,
-        top: `${topMenuPosition}px`,
+        left: `${relativePosition[0] + 20}px`,
+        top: `${relativePosition[1] + 20}px`,
         position: 'fixed',
       }}
     >

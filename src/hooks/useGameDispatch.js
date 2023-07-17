@@ -62,18 +62,15 @@ const useGameDispatch = () => {
   };
 
   const stopTimer = () => {
-    console.log('stop timer called');
     clearInterval(intervalID);
   };
 
   const checkForEndGame = (updatedCharObject) => {
-    console.log('check for end game called');
     const areAllCharsFound = Object.keys(updatedCharObject)
       .map((key) => updatedCharObject[key])
       .reduce((acc, curr) => acc + curr, 0);
 
     if (areAllCharsFound === 3) {
-      console.log('all chars found ');
       // Truthy equates to 1, if all chars found total is 3
       toggleWinnerForm();
       stopTimer();
@@ -89,7 +86,6 @@ const useGameDispatch = () => {
   };
 
   const startGame = () => {
-    console.log('start game called');
     dispatch({
       type: ACTIONS.START_GAME,
     });
@@ -140,7 +136,6 @@ const useGameDispatch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('handleSubmit called');
     const newPlayer = {
       name: state.nameInput,
       seconds: state.seconds,
