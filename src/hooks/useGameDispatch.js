@@ -62,7 +62,7 @@ const useGameDispatch = () => {
   };
 
   const stopTimer = () => {
-    console.log('stop time called');
+    console.log('stop timer called');
     clearInterval(intervalID);
   };
 
@@ -98,17 +98,19 @@ const useGameDispatch = () => {
     }, 1000);
   };
 
-  const playAgain = () => {
-    const newGameOver = state.isGameOver ? false : true;
+  const playAgain = async () => {
+    const newVisibility = state.isLeaderBoardVisible ? false : true;
     const updatedCharObject = { wally: false, odlaw: false, wilma: false };
+
     dispatch({
-      type: ACTIONS.TOGGLE_GAME_OVER,
-      payload: { newGameOver },
+      type: ACTIONS.TOGGLE_LEADER_BOARD_VISIBILITY,
+      payload: { newVisibility },
     });
     dispatch({
       type: ACTIONS.UPDATE_FOUND_CHARACTER,
       payload: { updatedCharObject },
     });
+    startGame();
   };
 
   const handleInput = (e) => {
@@ -119,12 +121,21 @@ const useGameDispatch = () => {
     });
   };
 
+  const resetTimer = () => {
+    const newSeconds = 0;
+    dispatch({
+      type: ACTIONS.INCREMENT_SECONDS,
+      payload: { newSeconds },
+    });
+  };
+
   const toggleLeaderBoard = () => {
     const newVisibility = state.isLeaderBoardVisible ? false : true;
     dispatch({
       type: ACTIONS.TOGGLE_LEADER_BOARD_VISIBILITY,
       payload: { newVisibility },
     });
+    resetTimer();
   };
 
   const handleSubmit = async (e) => {
@@ -149,6 +160,12 @@ const useGameDispatch = () => {
     toggleWinnerForm();
     //show leaderboard
     toggleLeaderBoard();
+    // Reset form
+    const newName = '';
+    dispatch({
+      type: ACTIONS.UPDATE_WINNER_NAME,
+      payload: { newName },
+    });
   };
 
   return {
