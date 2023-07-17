@@ -19,12 +19,12 @@ const gameReducer = (state, action) => {
     case ACTIONS.UPDATE_ABSOLUTE_POSITION:
       return {
         ...state,
-        absolutePosition: payload.newAbsolutePosition,
+        absolutePosition: [payload.e.pageX, payload.e.pageY],
       };
     case ACTIONS.UPDATE_RELATIVE_POSITION:
       return {
         ...state,
-        relativePosition: payload.newRelativePosition,
+        relativePosition: [payload.e.clientX, payload.e.clientY],
       };
     case ACTIONS.UPDATE_FOUND_CHARACTER:
       return {

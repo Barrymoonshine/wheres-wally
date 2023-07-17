@@ -12,15 +12,13 @@ const useGameDispatch = () => {
   const { state, dispatch } = useContext(GameContext);
 
   const updateMousePositions = (e) => {
-    const newAbsolutePosition = [e.pageX, e.pageY];
-    const newRelativePosition = [e.clientX, e.clientY];
     dispatch({
       type: ACTIONS.UPDATE_ABSOLUTE_POSITION,
-      payload: { newAbsolutePosition },
+      payload: { e },
     });
     dispatch({
       type: ACTIONS.UPDATE_RELATIVE_POSITION,
-      payload: { newRelativePosition },
+      payload: { e },
     });
   };
 
