@@ -5,7 +5,7 @@ import {
   getDocs,
   addDoc,
   query,
-  where,
+  limit,
   orderBy,
 } from 'firebase/firestore';
 
@@ -29,7 +29,11 @@ const colRefCharLocations = collection(db, 'characterLocations');
 const colRefLeaderBoard = collection(db, 'leaderBoard');
 
 // Queries
-const queryLeaderBoard = query(colRefLeaderBoard, orderBy('seconds', 'asc'));
+const queryLeaderBoard = query(
+  colRefLeaderBoard,
+  orderBy('seconds', 'asc'),
+  limit(10)
+);
 
 // Data getters
 export const getCharLocations = async () => {
