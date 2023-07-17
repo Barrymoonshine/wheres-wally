@@ -25,3 +25,8 @@ export const isLocationAllowed = async (selectedChar, absolutePosition) => {
   );
   return locationAllowed;
 };
+
+export const totalObjValues = (object) =>
+  Object.keys(object)
+    .map((key) => object[key])
+    .reduce((acc, curr) => acc + curr, 0);
