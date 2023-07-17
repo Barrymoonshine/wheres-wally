@@ -1,6 +1,9 @@
 import { useContext } from 'react';
 import { GameContext } from '../context/GameContext';
-import { addToLeaderBoard, getLeaderBoard } from '../firebase/firebase';
+import {
+  addToLeaderBoard,
+  getLeaderBoard,
+} from '../firebase/firestoreProvider';
 import ACTIONS from '../utils/ACTIONS';
 import { capitaliseFirstLetter } from '../utils/utilFunctions';
 import { isLocationAllowed } from '../helpers/helpers';

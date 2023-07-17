@@ -1,5 +1,5 @@
 import { formatTime } from '../utils/utilFunctions';
-import { getCharLocations } from '../firebase/firebase';
+import { getCharLocations } from '../firebase/firestoreProvider';
 
 export const getMinutes = (seconds) => formatTime(Math.floor(seconds / 60));
 
