@@ -1,5 +1,13 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  query,
+  where,
+  orderBy,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBWfynwwXOweY2U5PpxKzJBpfjEFHR6Lc4',
@@ -19,6 +27,9 @@ const db = getFirestore();
 // Collection refs
 const colRefCharLocations = collection(db, 'characterLocations');
 const colRefLeaderBoard = collection(db, 'leaderBoard');
+
+// Queries
+const queryLeaderBoard = query(colRefLeaderBoard, orderBy('seconds', 'asc'));
 
 // Data getters
 export const getCharLocations = async () => {
@@ -40,7 +51,7 @@ export const getCharLocations = async () => {
 export const getLeaderBoard = async () => {
   try {
     let leaderBoard = [];
-    await getDocs(colRefLeaderBoard).then((snapshot) => {
+    await getDocs(queryLeaderBoard).then((snapshot) => {
       snapshot.docs.forEach((doc) => {
         leaderBoard.push({ ...doc.data(), id: doc.id });
       });

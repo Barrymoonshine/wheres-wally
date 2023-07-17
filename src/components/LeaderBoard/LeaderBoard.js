@@ -10,7 +10,7 @@ const LeaderBoard = () => {
   return (
     <div className='leader-board-modal'>
       <div className='leader-board-modal-content'>
-        <div className='modal-header'>Leader board</div>
+        <div className='leader-board-header'>Leader board</div>
         <div className='leader-board-first-row'>
           <div className='leader-board-columns'>Position</div>
           <div className='leader-board-columns'>Name</div>
@@ -18,7 +18,7 @@ const LeaderBoard = () => {
         </div>
         {leaderBoard.map((player, index) => (
           <div className='leader-board-dynamic-rows' key={player.id}>
-            <div className='leader-board-columns'>{index}</div>
+            <div className='leader-board-columns'>{index + 1}</div>
             <div className='leader-board-columns'>{player.name}</div>
             <div className='leader-board-columns'>
               {getMinutes(player.seconds)}:{getSeconds(player.seconds)}
