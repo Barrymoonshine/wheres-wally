@@ -99,10 +99,9 @@ const useGameDispatch = () => {
   };
 
   const handleInput = (e) => {
-    const newName = e.target.value;
     dispatch({
       type: ACTIONS.UPDATE_WINNER_NAME,
-      payload: { newName },
+      payload: { e },
     });
   };
 
@@ -121,12 +120,11 @@ const useGameDispatch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPlayer = {
+    // Add data to Firestore
+    addToLeaderBoard({
       name: state.nameInput,
       seconds: state.seconds,
-    };
-    // Add data to Firestore
-    addToLeaderBoard(newPlayer);
+    });
     // Get data inc. new player from fireStore
     const leaderBoardArray = await getLeaderBoard();
     // Add data to state
@@ -139,10 +137,8 @@ const useGameDispatch = () => {
     //show leaderBoard
     toggleLeaderBoard();
     // Reset input field
-    const newName = '';
     dispatch({
-      type: ACTIONS.UPDATE_WINNER_NAME,
-      payload: { newName },
+      type: ACTIONS.RESET_NAME_INPUT,
     });
   };
 

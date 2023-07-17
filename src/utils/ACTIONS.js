@@ -11,6 +11,7 @@ const ACTIONS = {
   SET_LEADER_BOARD: 'set-leader-board-state',
   RESET_FOUND_CHARACTERS: 'reset-found-characters',
   RESET_TIMER: 'reset-the-timer',
+  RESET_NAME_INPUT: 'reset-the-winner-form-input-field',
 };
 
 export default ACTIONS;

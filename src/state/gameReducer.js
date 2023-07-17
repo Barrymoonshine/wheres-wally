@@ -49,7 +49,7 @@ const gameReducer = (state, action) => {
     case ACTIONS.UPDATE_WINNER_NAME:
       return {
         ...state,
-        nameInput: payload.newName,
+        nameInput: payload.e.target.value,
       };
     case ACTIONS.TOGGLE_WINNER_FORM_VISIBILITY:
       return {
@@ -75,6 +75,11 @@ const gameReducer = (state, action) => {
       return {
         ...state,
         seconds: 0,
+      };
+    case ACTIONS.RESET_NAME_INPUT:
+      return {
+        ...state,
+        nameInput: '',
       };
     default:
       return state;
