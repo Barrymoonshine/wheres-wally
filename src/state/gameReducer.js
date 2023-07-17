@@ -66,6 +66,16 @@ const gameReducer = (state, action) => {
         ...state,
         leaderBoard: payload.leaderBoardArray,
       };
+    case ACTIONS.RESET_FOUND_CHARACTERS:
+      return {
+        ...state,
+        foundCharacters: { wally: false, odlaw: false, wilma: false },
+      };
+    case ACTIONS.RESET_TIMER:
+      return {
+        ...state,
+        seconds: 0,
+      };
     default:
       return state;
   }

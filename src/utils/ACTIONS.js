@@ -9,6 +9,8 @@ const ACTIONS = {
   TOGGLE_LEADER_BOARD_VISIBILITY: 'toggle-leader-board-visibility',
   UPDATE_WINNER_NAME: 'update-name-of-winner',
   SET_LEADER_BOARD: 'set-leader-board-state',
+  RESET_FOUND_CHARACTERS: 'reset-found-characters',
+  RESET_TIMER: 'reset-the-timer',
 };
 
 export default ACTIONS;

@@ -90,14 +90,12 @@ const useGameDispatch = () => {
     }, 1000);
   };
 
-  const playAgain = async () => {
-    const updatedCharObject = { wally: false, odlaw: false, wilma: false };
+  const playAgain = () => {
     dispatch({
       type: ACTIONS.TOGGLE_LEADER_BOARD_VISIBILITY,
     });
     dispatch({
-      type: ACTIONS.UPDATE_FOUND_CHARACTER,
-      payload: { updatedCharObject },
+      type: ACTIONS.RESET_FOUND_CHARACTERS,
     });
     startGame();
   };
@@ -111,10 +109,8 @@ const useGameDispatch = () => {
   };
 
   const resetTimer = () => {
-    const newSeconds = 0;
     dispatch({
-      type: ACTIONS.INCREMENT_SECONDS,
-      payload: { newSeconds },
+      type: ACTIONS.RESET_TIMER,
     });
   };
 
@@ -133,20 +129,18 @@ const useGameDispatch = () => {
     };
     // Add data to Firestore
     addToLeaderBoard(newPlayer);
-
     // Get data inc. new player from fireStore
     const leaderBoardArray = await getLeaderBoard();
-
     // Add data to state
     dispatch({
       type: ACTIONS.SET_LEADER_BOARD,
       payload: { leaderBoardArray },
     });
-    //hide winnerform
+    //hide winnerForm
     toggleWinnerForm();
-    //show leaderboard
+    //show leaderBoard
     toggleLeaderBoard();
-    // Reset form
+    // Reset input field
     const newName = '';
     dispatch({
       type: ACTIONS.UPDATE_WINNER_NAME,
