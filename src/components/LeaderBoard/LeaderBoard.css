@@ -15,10 +15,8 @@
 
 .leader-board-modal-content {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
   text-align: center;
   background-color: #fafafa;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -26,15 +24,17 @@
   padding: 30px;
   font-size: 20px;
   width: 300px;
-  height: 500px;
   border: 5px solid #18181b;
 }
 
 .modal-header {
+  padding-bottom: 30px;
   font-weight: bold;
+  font-size: 30px;
 }
 
 .play-again-button {
+  margin-top: 30px;
   padding: 10px 20px 10px 20px;
   border: none;
   background-color: #a1e1f1;
@@ -46,4 +46,22 @@
 .play-again-button:hover {
   cursor: pointer;
   background-color: #89c5d4;
+}
+
+.leader-board-first-row {
+  font-weight: bold;
+}
+
+.leader-board-first-row,
+.leader-board-dynamic-rows {
+  display: flex;
+  border: 1px solid black;
+  border-bottom: none;
+  padding: 0px;
+}
+
+.leader-board-columns {
+  border: 1px solid black;
+  border-top: none;
+  width: 100px;
 }
