@@ -41,9 +41,7 @@ export const getCharLocations = async () => {
     let characterLocations = {};
     const snapshot = await getDocs(colRefCharLocations);
     snapshot.docs.forEach((doc) => {
-      const key = Object.keys(doc.data()).toString();
-      const value = doc.data()[key];
-      characterLocations = { ...characterLocations, [key]: value };
+      Object.assign(characterLocations, doc.data());
     });
     return characterLocations;
   } catch (error) {
