@@ -6,7 +6,7 @@ import {
 } from '../firebase/firestoreProvider';
 import ACTIONS from '../utils/ACTIONS';
 import { capitaliseFirstLetter } from '../utils/utilFunctions';
-import { isLocationAllowed, getTotalObjValues } from '../helpers/helpers';
+import { isLocationAllowed, areObjValuesTrue } from '../helpers/helpers';
 
 // Declare intervalID in file scope for access in stopTimer and startGame
 let intervalID;
@@ -65,9 +65,8 @@ const useGameDispatch = () => {
   };
 
   const checkForEndGame = (updatedCharObject) => {
-    const areAllCharsFound = getTotalObjValues(updatedCharObject);
-    if (areAllCharsFound === 3) {
-      // Truthy equates to 1, if all chars found total is 3
+    const areAllCharsFound = areObjValuesTrue(updatedCharObject);
+    if (areAllCharsFound) {
       toggleWinnerForm();
       stopTimer();
     }
