@@ -39,12 +39,11 @@ const queryLeaderBoard = query(
 export const getCharLocations = async () => {
   try {
     let characterLocations = {};
-    await getDocs(colRefCharLocations).then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        const key = Object.keys(doc.data()).toString();
-        const value = doc.data()[key];
-        characterLocations = { ...characterLocations, [key]: value };
-      });
+    const snapshot = await getDocs(colRefCharLocations);
+    snapshot.docs.forEach((doc) => {
+      const key = Object.keys(doc.data()).toString();
+      const value = doc.data()[key];
+      characterLocations = { ...characterLocations, [key]: value };
     });
     return characterLocations;
   } catch (error) {
@@ -55,10 +54,9 @@ export const getCharLocations = async () => {
 export const getLeaderBoard = async () => {
   try {
     let leaderBoard = [];
-    await getDocs(queryLeaderBoard).then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        leaderBoard.push({ ...doc.data(), id: doc.id });
-      });
+    const snapshot = await getDocs(queryLeaderBoard);
+    snapshot.docs.forEach((doc) => {
+      leaderBoard.push({ ...doc.data(), id: doc.id });
     });
     return leaderBoard;
   } catch (error) {
