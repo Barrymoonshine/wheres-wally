@@ -2,6 +2,8 @@
 
 Live link: https://where-s-wally-9cac8.web.app
 
+![Model](https://github.com/Barrymoonshine/wheres-wally/blob/main/public/wheres-wally-screenshot.png?raw=true)
+
 ## Summary
 
 Where's Wally is a photo-tagging app in which the user can click to locate Wally and his friends. The user's progress is tracked via two visual displays - on the top of the page and on the click menu, and their score is tracked via a timer.
